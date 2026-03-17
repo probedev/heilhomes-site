@@ -1,143 +1,105 @@
 import Image from "next/image";
-
-const galleryImages = ["/images/amsterdam/hero.jpg"];
+import Link from "next/link";
+import { getHeroSrc, getPropertyImages } from "@/lib/gallery";
 
 const CAL_AMSTERDAM_URL =
   "https://cal.com/YOUR-CAL-USERNAME/amsterdam?embed=inline";
 
 export default function AmsterdamPage() {
+  const galleryImages = getPropertyImages("amsterdam");
+  const heroSrc = getHeroSrc("amsterdam", galleryImages);
+
   return (
-    <div className="space-y-10">
-      <section className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start">
-        <div className="space-y-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-300">
-            Amsterdam · Noord Holland
-          </p>
-          <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-            Weteringschans 129‑3 · Amsterdam penthouse.
+    <div className="space-y-16 text-slate-800">
+      <section className="grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div className="space-y-6">
+          <h1 className="font-serif text-2xl font-normal uppercase tracking-wide text-slate-900 sm:text-3xl">
+            Our Amsterdam Penthouse
           </h1>
-          <p className="max-w-2xl text-sm leading-relaxed text-zinc-300 sm:text-base">
-            Our two bedroom, one and a half bath plus attic, 140 square meter
-            penthouse sleeps five comfortably. The quiet, private apartment is
-            on the top floor of a canal house built in 1885 and offers views of
-            canals both in front and back.
-          </p>
-
-          <dl className="mt-4 grid gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm sm:grid-cols-2 sm:p-5">
-            <div>
-              <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
-                Flexible sleeping
-              </dt>
-              <dd className="mt-1 text-zinc-100">
-                Two bedrooms can each be configured as one king bed or two twins,
-                and the attic level is a cozy hideaway for kids of all ages.
-              </dd>
-            </div>
-            <div>
-              <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
-                Recently renovated
-              </dt>
-              <dd className="mt-1 text-zinc-100">
-                Fully renovated in 2023: bright, modern finishes, clean lines, and
-                plenty of natural light while preserving the character of the
-                original canal house.
-              </dd>
-            </div>
-          </dl>
+          <Link
+            href="#gallery"
+            className="inline-flex rounded-sm bg-slate-800 px-8 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-slate-700"
+          >
+            View Gallery
+          </Link>
         </div>
-
-        <div className="space-y-4">
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_0_40px_rgba(0,0,0,0.6)]">
-            <div className="relative h-64 w-full sm:h-80">
-              <Image
-                src={galleryImages[0]}
-                alt="Amsterdam penthouse interior"
-                fill
-                sizes="(min-width: 1024px) 520px, 100vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-            </div>
-            <div className="space-y-2 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-300">
-                In the center of Amsterdam
-              </p>
-              <p className="text-sm text-zinc-200">
-                Beautiful views of the Rijksmuseum with convenient access to public
-                transport, the canal belt, and all of the restaurants and cafés in
-                De Pijp.
-              </p>
-            </div>
-          </div>
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-slate-100">
+          <Image
+            src={heroSrc}
+            alt="Amsterdam penthouse living room"
+            fill
+            className="object-cover"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            priority
+          />
         </div>
       </section>
 
-      <section className="grid gap-8 lg:grid-cols-3">
-        <div className="space-y-3">
-          <h2 className="text-lg font-semibold sm:text-xl">The apartment</h2>
-          <p className="text-sm text-zinc-300">
-            Clean, modern, and light—perfect as a home base for exploring the
-            city.
-          </p>
-        </div>
-        <div className="space-y-3 text-sm text-zinc-300">
-          <p className="font-semibold text-zinc-100">Historic canal house</p>
-          <p>
-            Located on the top floor of an 1885 canal house with views over the
-            water in both directions and classic Amsterdam charm.
-          </p>
-        </div>
-        <div className="space-y-3 text-sm text-zinc-300">
-          <p className="font-semibold text-zinc-100">Connected & convenient</p>
-          <p>
-            Easy access to trams and Metro, walkable to museums, the canal belt,
-            and the restaurants, bars, and shops of De Pijp.
+      <section className="space-y-6 text-center">
+        <h2 className="font-serif text-xl font-normal tracking-[0.2em] text-slate-900 sm:text-2xl">
+          WETERINGSCHANS 129-3
+        </h2>
+        <p className="mx-auto max-w-3xl text-left text-sm leading-relaxed text-slate-600 sm:text-base">
+          The two bedroom one and half bath plus attic 140 square meter sleeps 5
+          comfortably. Each bedroom can be configured as one king bed or two twins
+          and the attic is a perfect home for kids of all ages. The quiet and
+          private apartment is located on the top floor of a canal house built in
+          1885 and includes views of canals both in the front and back of the
+          house.
+        </p>
+      </section>
+
+      <section className="space-y-8">
+        <div>
+          <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">
+            Located in the center of Amsterdam
+          </h2>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
+            Our apartment is located in the center of Amsterdam, with beautiful
+            views of the Rijksmuseum and convenient access to public
+            transportation as well as the famed canal belt and all the
+            restaurants in the Pijp neighborhood.
           </p>
         </div>
       </section>
 
-      <section className="space-y-4">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="text-lg font-semibold sm:text-xl">Gallery</h2>
-            <p className="text-sm text-zinc-300">
-              A look inside the apartment and its surroundings.
-            </p>
-          </div>
+      <section id="gallery" className="scroll-mt-24 space-y-6">
+        <div className="text-center">
+          <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">
+            View Gallery
+          </h2>
+          <p className="mt-2 text-sm text-slate-600">
+            Recently renovated in 2023, the apartment is clean, modern, and
+            light.
+          </p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-3 lg:grid-cols-4">
           {galleryImages.map((src, index) => (
             <div
-              key={src + index}
-              className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5"
+              key={src}
+              className="relative aspect-square overflow-hidden bg-slate-100"
             >
-              <div className="relative h-56 w-full">
-                <Image
-                  src={src}
-                  alt={`Amsterdam photo ${index + 1}`}
-                  fill
-                  sizes="(min-width: 1024px) 320px, 50vw"
-                  className="object-cover"
-                />
-              </div>
+              <Image
+                src={src}
+                alt={`Amsterdam ${index + 1}`}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+              />
             </div>
           ))}
         </div>
       </section>
 
-      <section className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-6 lg:p-8">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="space-y-1">
-            <h2 className="text-lg font-semibold sm:text-xl">
-              Availability & booking
-            </h2>
-            <p className="text-sm text-zinc-300">
-              Use the calendar below to check availability and request a booking.
-              All scheduling is handled securely via Cal.com.
-            </p>
-          </div>
-        </div>
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/60">
+      <section className="space-y-4 rounded-sm border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
+        <h2 className="font-serif text-xl text-slate-900 sm:text-2xl">
+          Availability &amp; booking
+        </h2>
+        <p className="text-sm text-slate-600">
+          Check availability and request a booking via Cal.com (link to be
+          updated).
+        </p>
+        <div className="overflow-hidden rounded-sm border border-slate-200 bg-white">
           <iframe
             src={CAL_AMSTERDAM_URL}
             title="Amsterdam availability and booking"
@@ -150,4 +112,3 @@ export default function AmsterdamPage() {
     </div>
   );
 }
-

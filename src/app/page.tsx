@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -7,13 +9,13 @@ const slides = [
     name: "Hanalei",
     subtitle: "North Shore Kauai",
     href: "/hanalei",
-    image: "/images/hanalei/hero.jpg",
+    image: "/images/hanalei/DJI_0051.jpg",
   },
   {
     name: "Amsterdam",
     subtitle: "Noord Holland",
     href: "/amsterdam",
-    image: "/images/amsterdam/hero.jpg",
+    image: "/images/amsterdam/AMS-Living-Room-1.jpg",
   },
 ];
 
