@@ -15,7 +15,7 @@ const slides = [
     name: "Amsterdam",
     subtitle: "Noord Holland",
     href: "/amsterdam",
-    image: "/images/amsterdam/AMS-Living-Room-1.jpg",
+    image: "/images/amsterdam/hero.jpg",
   },
 ];
 

@@ -17,8 +17,8 @@ export default function AmsterdamPage() {
     attic: galleryImages[5] ?? heroSrc,
   };
 
-  /** Distinct from home carousel; full-width hero like Hanalei kitchen shot */
-  const heroImage = "/images/amsterdam/kitchen-5.jpg";
+  /** Distinct from home carousel; full-width hero using living room shot */
+  const heroImage = "/images/amsterdam/AMS-Living-Room-1.jpg";
 
   return (
     <>
