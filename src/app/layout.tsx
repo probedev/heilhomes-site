@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 
@@ -30,12 +31,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <div className="flex min-h-screen flex-col bg-white text-slate-900">
-          <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
-            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+          <header className="border-b border-slate-200 bg-background">
+            <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
               <Link href="/" className="flex items-center gap-2">
-                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-                  Heil Homes
-                </span>
+                <Image
+                  src="/logo-heil-homes.png"
+                  alt="Heil Homes"
+                  width={180}
+                  height={48}
+                  priority
+                />
               </Link>
               <nav className="flex items-center gap-6 text-xs font-medium tracking-[0.25em] text-slate-500">
                 <Link
