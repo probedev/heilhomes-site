@@ -50,21 +50,21 @@ export function GalleryLightbox({ images, altPrefix }: GalleryLightboxProps) {
       </div>
 
       {openIndex !== null && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/75">
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80">
           <button
             type="button"
             className="absolute inset-0 cursor-zoom-out"
             onClick={() => setOpenIndex(null)}
             aria-label="Close image"
           />
-          <div className="relative z-50 mx-4 flex max-h-[90vh] max-w-5xl flex-col gap-4">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-black">
+          <div className="relative z-50 mx-2 sm:mx-6 flex max-h-[94vh] max-w-6xl flex-col gap-4">
+            <div className="relative h-[70vh] w-full overflow-hidden rounded-sm bg-black">
               <Image
                 src={images[openIndex]}
                 alt={`${altPrefix} ${openIndex + 1}`}
                 fill
                 className="object-contain"
-                sizes="(min-width: 1024px) 70vw, 100vw"
+                sizes="(min-width: 1280px) 80vw, (min-width: 768px) 90vw, 100vw"
               />
             </div>
             <div className="flex items-center justify-between text-xs text-slate-100">
