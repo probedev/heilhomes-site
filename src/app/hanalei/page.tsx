@@ -17,7 +17,7 @@ export default function HanaleiPage() {
     bedroom: galleryImages[10] ?? heroSrc,
   };
 
-  const heroImage = "/images/hanalei/HAN-kitchen-1.jpg";
+  const heroImage = "/images/hanalei/IMG_3132.jpg";
 
   return (
     <>
@@ -33,24 +33,26 @@ export default function HanaleiPage() {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 px-6 pb-10 pt-8 sm:px-10">
-            <p className="text-[11px] font-medium tracking-[0.28em] text-slate-100">
-              HANALEI · NORTH SHORE KAUAI
-            </p>
-            <h1 className="mt-2 max-w-xl font-serif text-3xl font-normal tracking-tight text-slate-50 sm:text-4xl">
-              Modern plantation cottage in Hanalei Bay.
-            </h1>
-            <p className="mt-3 max-w-xl text-xs leading-relaxed text-slate-100/85 sm:text-sm">
-              A reimagined plantation home on a quiet cul‑de‑sac, a short walk
-              from town and the sand—thoughtfully designed for family, friends,
-              and long stays.
-            </p>
-            <Link
-              href="#gallery"
-              className="mt-5 inline-flex rounded-full bg-white/90 px-7 py-2 text-[11px] font-semibold tracking-[0.22em] text-slate-900 shadow-sm backdrop-blur hover:bg-white"
-            >
-              VIEW GALLERY
-            </Link>
+          <div className="absolute inset-x-0 bottom-0">
+            <div className="mx-auto max-w-6xl px-6 pb-10 pt-8 sm:px-10">
+              <p className="text-[11px] font-medium tracking-[0.28em] text-slate-100">
+                HANALEI · NORTH SHORE KAUAI
+              </p>
+              <h1 className="mt-2 max-w-xl font-serif text-3xl font-normal tracking-tight text-slate-50 sm:text-4xl">
+                Modern plantation cottage in Hanalei Bay.
+              </h1>
+              <p className="mt-3 max-w-xl text-xs leading-relaxed text-slate-100/85 sm:text-sm">
+                A reimagined plantation home on a quiet cul‑de‑sac, a short walk
+                from town and the sand—thoughtfully designed for family, friends,
+                and long stays.
+              </p>
+              <Link
+                href="#gallery"
+                className="mt-5 inline-flex rounded-full bg-white/90 px-7 py-2 text-[11px] font-semibold tracking-[0.22em] text-slate-900 shadow-sm backdrop-blur hover:bg-white"
+              >
+                VIEW GALLERY
+              </Link>
+            </div>
           </div>
         </div>
       </section>
