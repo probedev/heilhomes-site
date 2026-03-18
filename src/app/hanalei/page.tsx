@@ -17,13 +17,15 @@ export default function HanaleiPage() {
     bedroom: galleryImages[10] ?? heroSrc,
   };
 
+  const heroImage = "/images/hanalei/HAN-kitchen-1.jpg";
+
   return (
-    <div className="mx-auto max-w-6xl space-y-20 pt-10 pb-10 sm:pt-16 sm:pb-16 px-4 sm:px-6 lg:px-8 text-slate-800">
-      {/* Hero spread with overlay */}
-      <section className="relative mb-4 overflow-hidden rounded-sm bg-slate-100">
+    <>
+      {/* Full-width hero spread with overlay */}
+      <section className="relative mb-8 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden bg-slate-100">
         <div className="relative h-[55vh] min-h-[360px] w-full">
           <Image
-            src={heroSrc}
+            src={heroImage}
             alt="Hanalei cottage"
             fill
             className="object-cover"
@@ -52,7 +54,7 @@ export default function HanaleiPage() {
           </div>
         </div>
       </section>
-
+      <div className="mx-auto max-w-6xl space-y-20 pt-10 pb-10 sm:pt-16 sm:pb-16 px-4 sm:px-6 lg:px-8 text-slate-800">
       {/* Editorial story row 1 */}
       <section className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-start">
         <div className="space-y-6">
@@ -204,6 +206,7 @@ export default function HanaleiPage() {
           />
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
