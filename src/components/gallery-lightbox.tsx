@@ -50,24 +50,24 @@ export function GalleryLightbox({ images, altPrefix }: GalleryLightboxProps) {
       </div>
 
       {openIndex !== null && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/80">
+        <div className="fixed inset-0 z-40 bg-black/85">
           <button
             type="button"
             className="absolute inset-0 cursor-zoom-out"
             onClick={() => setOpenIndex(null)}
             aria-label="Close image"
           />
-          <div className="relative z-50 mx-2 sm:mx-6 flex max-h-[94vh] max-w-6xl flex-col gap-4">
-            <div className="relative h-[70vh] w-full overflow-hidden rounded-sm bg-black">
+          <div className="relative z-50 flex h-full w-full flex-col items-center justify-center px-4 py-6">
+            <div className="relative h-full w-full max-w-6xl">
               <Image
                 src={images[openIndex]}
                 alt={`${altPrefix} ${openIndex + 1}`}
                 fill
                 className="object-contain"
-                sizes="(min-width: 1280px) 80vw, (min-width: 768px) 90vw, 100vw"
+                sizes="100vw"
               />
             </div>
-            <div className="flex items-center justify-between text-xs text-slate-100">
+            <div className="mt-4 flex w-full max-w-6xl items-center justify-between text-xs text-slate-100">
               <span>
                 {altPrefix} {openIndex + 1} / {images.length}
               </span>
