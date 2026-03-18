@@ -9,18 +9,35 @@ export default function HanaleiPage() {
   const galleryImages = getPropertyImages("hanalei");
   const heroSrc = getHeroSrc("hanalei", galleryImages);
 
+  const detailImages = {
+    living: galleryImages[1] ?? heroSrc,
+    kitchen: galleryImages[3] ?? heroSrc,
+    lanai: galleryImages[7] ?? heroSrc,
+    bedroom: galleryImages[10] ?? heroSrc,
+  };
+
   return (
-    <div className="space-y-16 text-slate-800">
-      <section className="grid gap-10 lg:grid-cols-2 lg:items-start">
+    <div className="space-y-20 text-slate-800">
+      {/* Hero spread */}
+      <section className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,1fr)] lg:items-center">
         <div className="space-y-6">
-          <h1 className="font-serif text-3xl font-normal tracking-tight text-slate-900 sm:text-4xl lg:text-[2.35rem] lg:leading-tight">
+          <p className="text-xs font-semibold tracking-[0.25em] text-slate-500">
+            HANALEI · NORTH SHORE KAUAI
+          </p>
+          <h1 className="font-serif text-3xl font-normal tracking-tight text-slate-900 sm:text-4xl lg:text-[2.4rem] lg:leading-tight">
             Modern plantation cottage in Hanalei Bay.
           </h1>
+          <p className="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
+            Tucked into a quiet cul‑de‑sac just a short walk from the sand, this
+            reimagined plantation home brings together open, breezy spaces,
+            thoughtful details, and all the comforts you want after a day in the
+            ocean.
+          </p>
           <Link
             href="#gallery"
-            className="inline-flex rounded-sm bg-slate-800 px-8 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-slate-700"
+            className="inline-flex rounded-sm bg-slate-900 px-8 py-2.5 text-xs font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
           >
-            View Gallery
+            VIEW GALLERY
           </Link>
         </div>
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-slate-100">
@@ -35,87 +52,127 @@ export default function HanaleiPage() {
         </div>
       </section>
 
-      <section className="space-y-8">
-        <div>
-          <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">
+      {/* Editorial story row 1 */}
+      <section className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-start">
+        <div className="space-y-6">
+          <h2 className="font-serif text-2xl font-normal text-slate-900 sm:text-3xl">
             What&apos;s inside.
           </h2>
-          <p className="mt-2 text-sm text-sky-800/90">
+          <p className="text-sm text-sky-900/90">
             Exceptionally thoughtful quality and attention to detail.
           </p>
+          <div className="space-y-8">
+            <article className="space-y-3">
+              <h3 className="text-sm font-semibold text-slate-900">
+                <span className="mr-2 text-slate-400">01</span>
+                Two bedroom main house
+              </h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                The main house centers around a modern, chef-friendly kitchen with
+                Wolf and Sub‑Zero appliances that opens onto the living room and
+                dining area. Two covered lanais extend the living space outdoors,
+                framing views of the garden and mountains beyond.
+              </p>
+            </article>
+            <article className="space-y-3">
+              <h3 className="text-sm font-semibold text-slate-900">
+                <span className="mr-2 text-slate-400">02</span>
+                One bedroom guest house
+              </h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                The detached, lofted guest house is its own private retreat,
+                complete with king bed, memory‑foam pull‑out sofa, 55&quot; TV,
+                kitchenette, half bath, and an outdoor shower tucked beneath the
+                palms.
+              </p>
+            </article>
+          </div>
         </div>
-        <div className="grid gap-10 sm:grid-cols-2 lg:gap-14">
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-slate-900">
-              <span className="mr-2 text-slate-500">01</span>
-              Two Bedroom Main House
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-600">
-              The recently renovated main house includes a modern and well
-              equipped kitchen with Wolf and Sub‑Zero appliances, two separate
-              lanais with comfortable outdoor furniture. An oversized and private
-              master bedroom and a second bedroom that can be configured as two
-              twin beds or one king bed.
-            </p>
+        <div className="grid gap-4">
+          <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+            <Image
+              src={detailImages.living}
+              alt="Hanalei living room"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 32vw, 100vw"
+            />
           </div>
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-slate-900">
-              <span className="mr-2 text-slate-500">02</span>
-              One Bedroom Guest House
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-600">
-              The lofted and detached guest house includes a king bed, extremely
-              comfortable memory foam pull out couch, 55 inch LED TV, kitchenette,
-              half bathroom and attached outdoor shower.
-            </p>
-          </div>
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-slate-900">
-              <span className="mr-2 text-slate-500">03</span>
-              Modern
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-600">
-              Gigabit fiber internet service, Wi‑Fi 7 mesh routers, smart locks
-              and keypads, OLED TVs, Sonos sound system—stay connected if you
-              can&apos;t completely put your head in the sand.
-            </p>
-          </div>
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-slate-900">
-              <span className="mr-2 text-slate-500">04</span>
-              Close to town and the beach
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-600">
-              On a quiet cul‑de‑sac, you are a 5 minute walk to shops and
-              restaurants in Hanalei town and a 10 minute walk to Hanalei Bay
-              beach and surf breaks.
-            </p>
-          </div>
-          <div className="space-y-3 sm:col-span-2">
-            <h3 className="text-sm font-semibold text-slate-900">
-              <span className="mr-2 text-slate-500">05</span>
-              Sustainable
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-600">
-              5 kWh solar with 2 Tesla Powerwall batteries—the house is energy
-              self‑sufficient and resilient to grid interruptions common on the
-              island.
-            </p>
-          </div>
-          <div className="space-y-3 sm:col-span-2">
-            <h3 className="text-sm font-semibold text-slate-900">
-              <span className="mr-2 text-slate-500">06</span>
-              And more
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-600">
-              Split AC and Big Ass Fans in every room, Breville espresso
-              machine, Weber gas grill, outdoor sand foot washer, laundry, stand
-              up paddle boards and soft top surfboards for your visit.
-            </p>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <Image
+                src={detailImages.kitchen}
+                alt="Hanalei kitchen"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 16vw, 50vw"
+              />
+            </div>
+            <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <Image
+                src={detailImages.lanai}
+                alt="Hanalei lanai"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 16vw, 50vw"
+              />
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Editorial story row 2 */}
+      <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-center">
+        <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
+          <Image
+            src={detailImages.bedroom}
+            alt="Hanalei master bedroom"
+            fill
+            className="object-cover"
+            sizes="(min-width: 1024px) 30vw, 100vw"
+          />
+        </div>
+        <div className="space-y-8">
+          <article className="space-y-3">
+            <h3 className="text-sm font-semibold text-slate-900">
+              <span className="mr-2 text-slate-400">03</span>
+              Modern comforts
+            </h3>
+            <p className="text-sm leading-relaxed text-slate-600">
+              Gigabit fiber internet, Wi‑Fi 7 mesh routers, smart locks and
+              keypads, OLED TVs, and Sonos sound throughout the home keep everyone
+              connected and entertained, whether you&apos;re working remotely or
+              unwinding after a long surf.
+            </p>
+          </article>
+          <article className="space-y-3">
+            <h3 className="text-sm font-semibold text-slate-900">
+              <span className="mr-2 text-slate-400">04</span>
+              Sustainable by design
+            </h3>
+            <p className="text-sm leading-relaxed text-slate-600">
+              A 5 kWh solar system paired with two Tesla Powerwall batteries keeps
+              the home powered and comfortable even when the island grid isn&apos;t.
+              Efficient cooling and fans keep the air moving without sacrificing
+              the feeling of open‑air living.
+            </p>
+          </article>
+          <article className="space-y-3">
+            <h3 className="text-sm font-semibold text-slate-900">
+              <span className="mr-2 text-slate-400">05</span>
+              Steps from town and the bay
+            </h3>
+            <p className="text-sm leading-relaxed text-slate-600">
+              From your front door, it&apos;s a short stroll to the cafés,
+              restaurants, and shops of Hanalei town, and just a few more minutes
+              until your feet hit the sand at Hanalei Bay and its legendary surf
+              breaks.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      {/* Gallery grid */}
       <section id="gallery" className="scroll-mt-24 space-y-6">
         <div className="text-center">
           <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">

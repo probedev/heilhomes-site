@@ -9,18 +9,34 @@ export default function AmsterdamPage() {
   const galleryImages = getPropertyImages("amsterdam");
   const heroSrc = getHeroSrc("amsterdam", galleryImages);
 
+  const detailImages = {
+    living: galleryImages[1] ?? heroSrc,
+    kitchen: galleryImages[10] ?? heroSrc,
+    tulips: galleryImages[25] ?? heroSrc,
+    attic: galleryImages[5] ?? heroSrc,
+  };
+
   return (
-    <div className="space-y-16 text-slate-800">
-      <section className="grid gap-10 lg:grid-cols-2 lg:items-start">
+    <div className="space-y-20 text-slate-800">
+      {/* Hero spread */}
+      <section className="grid gap-10 lg:grid-cols-[1.05fr_minmax(0,1fr)] lg:items-center">
         <div className="space-y-6">
-          <h1 className="font-serif text-2xl font-normal uppercase tracking-wide text-slate-900 sm:text-3xl">
+          <p className="text-xs font-semibold tracking-[0.25em] text-slate-500">
+            AMSTERDAM · NOORD HOLLAND
+          </p>
+          <h1 className="font-serif text-2xl font-normal uppercase tracking-[0.35em] text-slate-900 sm:text-3xl">
             Our Amsterdam Penthouse
           </h1>
+          <p className="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
+            A light‑filled, top‑floor canal house apartment with sweeping views of
+            the Rijksmuseum and tree‑lined streets, designed for slow mornings,
+            long dinners, and quiet evenings above the city.
+          </p>
           <Link
             href="#gallery"
-            className="inline-flex rounded-sm bg-slate-800 px-8 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-slate-700"
+            className="inline-flex rounded-sm bg-slate-900 px-8 py-2.5 text-xs font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
           >
-            View Gallery
+            VIEW GALLERY
           </Link>
         </div>
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-slate-100">
@@ -35,34 +51,94 @@ export default function AmsterdamPage() {
         </div>
       </section>
 
-      <section className="space-y-6 text-center">
-        <h2 className="font-serif text-xl font-normal tracking-[0.2em] text-slate-900 sm:text-2xl">
-          WETERINGSCHANS 129-3
-        </h2>
-        <p className="mx-auto max-w-3xl text-left text-sm leading-relaxed text-slate-600 sm:text-base">
-          The two bedroom one and half bath plus attic 140 square meter sleeps 5
-          comfortably. Each bedroom can be configured as one king bed or two twins
-          and the attic is a perfect home for kids of all ages. The quiet and
-          private apartment is located on the top floor of a canal house built in
-          1885 and includes views of canals both in the front and back of the
-          house.
-        </p>
-      </section>
-
-      <section className="space-y-8">
-        <div>
-          <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">
-            Located in the center of Amsterdam
+      {/* Story row 1 */}
+      <section className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-start">
+        <div className="space-y-6">
+          <h2 className="font-serif text-xl font-normal tracking-[0.2em] text-slate-900 sm:text-2xl">
+            WETERINGSCHANS 129-3
           </h2>
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
-            Our apartment is located in the center of Amsterdam, with beautiful
-            views of the Rijksmuseum and convenient access to public
-            transportation as well as the famed canal belt and all the
-            restaurants in the Pijp neighborhood.
+          <p className="max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
+            The two bedroom one and half bath plus attic, 140 square meter
+            apartment sleeps five comfortably. Each bedroom can be configured as
+            one king bed or two twins, and the attic is a perfect hideaway for
+            kids of all ages. The quiet and private apartment is on the top floor
+            of a canal house built in 1885, with views to the water both in front
+            and back.
           </p>
+          <article className="space-y-3">
+            <h3 className="text-sm font-semibold text-slate-900">
+              <span className="mr-2 text-slate-400">01</span>
+              A living room in the trees
+            </h3>
+            <p className="text-sm leading-relaxed text-slate-600">
+              Floor‑to‑ceiling windows frame the canopy of the trees outside,
+              filling the living room with soft northern light. Neutral tones,
+              layered textures, and considered furnishings create a calm backdrop
+              for long conversations or quiet reading.
+            </p>
+          </article>
+        </div>
+        <div className="grid gap-4">
+          <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+            <Image
+              src={detailImages.living}
+              alt="Amsterdam living room"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 32vw, 100vw"
+            />
+          </div>
+          <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+            <Image
+              src={detailImages.kitchen}
+              alt="Amsterdam kitchen"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 32vw, 100vw"
+            />
+          </div>
         </div>
       </section>
 
+      {/* Story row 2 */}
+      <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-center">
+        <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
+          <Image
+            src={detailImages.attic}
+            alt="Amsterdam attic bedroom"
+            fill
+            className="object-cover"
+            sizes="(min-width: 1024px) 30vw, 100vw"
+          />
+        </div>
+        <div className="space-y-8">
+          <article className="space-y-3">
+            <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">
+              Located in the center of Amsterdam
+            </h2>
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
+              Step outside and you&apos;re moments from the Museumplein, the
+              canal belt, and the restaurants and bars of De Pijp. Trams and the
+              Metro are within easy reach, but most days you&apos;ll want to walk
+              or cycle—everything feels close from here.
+            </p>
+          </article>
+          <article className="space-y-3">
+            <h3 className="text-sm font-semibold text-slate-900">
+              <span className="mr-2 text-slate-400">02</span>
+              Everyday Amsterdam, framed
+            </h3>
+            <p className="text-sm leading-relaxed text-slate-600">
+              From the windows you can watch boats drift by on the canals, see
+              the spires of the Rijksmuseum, and catch the changing light over the
+              rooftops. Inside, art, tulips, and layered materials echo the city
+              beyond the glass.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      {/* Gallery grid */}
       <section id="gallery" className="scroll-mt-24 space-y-6">
         <div className="text-center">
           <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">
