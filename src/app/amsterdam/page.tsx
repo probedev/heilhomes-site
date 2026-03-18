@@ -17,42 +17,48 @@ export default function AmsterdamPage() {
     attic: galleryImages[5] ?? heroSrc,
   };
 
+  /** Distinct from home carousel; full-width hero like Hanalei kitchen shot */
+  const heroImage = "/images/amsterdam/kitchen-5.jpg";
+
   return (
-    <div className="mx-auto max-w-6xl space-y-20 pt-10 pb-10 sm:pt-16 sm:pb-16 px-4 sm:px-6 lg:px-8 text-slate-800">
-      {/* Hero spread with overlay */}
-      <section className="relative mb-4 overflow-hidden rounded-sm bg-slate-100">
+    <>
+      {/* Full-width hero (same pattern as Hanalei — outside max-w-6xl) */}
+      <section className="relative mb-8 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden bg-slate-100">
         <div className="relative h-[55vh] min-h-[360px] w-full">
           <Image
-            src={heroSrc}
-            alt="Amsterdam penthouse living room"
+            src={heroImage}
+            alt="Amsterdam penthouse"
             fill
             className="object-cover"
-            sizes="(min-width: 1024px) 72vw, 100vw"
+            sizes="100vw"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 px-6 pb-10 pt-8 sm:px-10">
-            <p className="text-[11px] font-medium tracking-[0.28em] text-slate-100">
-              AMSTERDAM · NOORD HOLLAND
-            </p>
-            <h1 className="mt-2 max-w-xl font-serif text-2xl font-normal uppercase tracking-[0.35em] text-slate-50 sm:text-3xl">
-              Our Amsterdam Penthouse
-            </h1>
-            <p className="mt-3 max-w-xl text-xs leading-relaxed text-slate-100/85 sm:text-sm">
-              A top‑floor canal house apartment with views of the Rijksmuseum and
-              surrounding canals—clean, quiet, and filled with soft northern
-              light.
-            </p>
-            <Link
-              href="#gallery"
-              className="mt-5 inline-flex rounded-full bg-white/90 px-7 py-2 text-[11px] font-semibold tracking-[0.22em] text-slate-900 shadow-sm backdrop-blur hover:bg-white"
-            >
-              VIEW GALLERY
-            </Link>
+          <div className="absolute inset-x-0 bottom-0">
+            <div className="mx-auto max-w-6xl px-6 pb-10 pt-8 sm:px-10">
+              <p className="text-[11px] font-medium tracking-[0.28em] text-slate-100">
+                AMSTERDAM · NOORD HOLLAND
+              </p>
+              <h1 className="mt-2 max-w-xl font-serif text-2xl font-normal uppercase tracking-[0.35em] text-slate-50 sm:text-3xl">
+                Our Amsterdam Penthouse
+              </h1>
+              <p className="mt-3 max-w-xl text-xs leading-relaxed text-slate-100/85 sm:text-sm">
+                A top‑floor canal house apartment with views of the Rijksmuseum and
+                surrounding canals—clean, quiet, and filled with soft northern
+                light.
+              </p>
+              <Link
+                href="#gallery"
+                className="mt-5 inline-flex rounded-full bg-white/90 px-7 py-2 text-[11px] font-semibold tracking-[0.22em] text-slate-900 shadow-sm backdrop-blur hover:bg-white"
+              >
+                VIEW GALLERY
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
+      <div className="mx-auto max-w-6xl space-y-20 pt-10 pb-10 sm:pt-16 sm:pb-16 px-4 sm:px-6 lg:px-8 text-slate-800">
       {/* Story row 1 */}
       <section className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-start">
         <div className="space-y-6">
@@ -172,6 +178,7 @@ export default function AmsterdamPage() {
           />
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
