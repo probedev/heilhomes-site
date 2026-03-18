@@ -17,7 +17,7 @@ export default function HanaleiPage() {
   };
 
   return (
-    <div className="space-y-20 pt-10 sm:pt-16 text-slate-800">
+    <div className="mx-auto max-w-6xl space-y-20 pt-10 pb-10 sm:pt-16 sm:pb-16 px-4 sm:px-6 lg:px-8 text-slate-800">
       {/* Hero spread */}
       <section className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,1fr)] lg:items-center">
         <div className="space-y-6">
