@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GalleryLightbox } from "@/components/gallery-lightbox";
 import { getHeroSrc, getPropertyImages } from "@/lib/gallery";
 
 const CAL_HANALEI_URL =
@@ -18,37 +19,37 @@ export default function HanaleiPage() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-20 pt-10 pb-10 sm:pt-16 sm:pb-16 px-4 sm:px-6 lg:px-8 text-slate-800">
-      {/* Hero spread */}
-      <section className="grid gap-10 lg:grid-cols-[1.1fr_minmax(0,1fr)] lg:items-center">
-        <div className="space-y-6">
-          <p className="text-xs font-semibold tracking-[0.25em] text-slate-500">
-            HANALEI · NORTH SHORE KAUAI
-          </p>
-          <h1 className="font-serif text-3xl font-normal tracking-tight text-slate-900 sm:text-4xl lg:text-[2.4rem] lg:leading-tight">
-            Modern plantation cottage in Hanalei Bay.
-          </h1>
-          <p className="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
-            Tucked into a quiet cul‑de‑sac just a short walk from the sand, this
-            reimagined plantation home brings together open, breezy spaces,
-            thoughtful details, and all the comforts you want after a day in the
-            ocean.
-          </p>
-          <Link
-            href="#gallery"
-            className="inline-flex rounded-sm bg-slate-900 px-8 py-2.5 text-xs font-medium tracking-[0.2em] text-white transition hover:bg-slate-700"
-          >
-            VIEW GALLERY
-          </Link>
-        </div>
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-slate-100">
+      {/* Hero spread with overlay */}
+      <section className="relative mb-4 overflow-hidden rounded-sm bg-slate-100">
+        <div className="relative h-[55vh] min-h-[360px] w-full">
           <Image
             src={heroSrc}
             alt="Hanalei cottage"
             fill
             className="object-cover"
-            sizes="(min-width: 1024px) 50vw, 100vw"
+            sizes="(min-width: 1024px) 72vw, 100vw"
             priority
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 px-6 pb-10 pt-8 sm:px-10">
+            <p className="text-[11px] font-medium tracking-[0.28em] text-slate-100">
+              HANALEI · NORTH SHORE KAUAI
+            </p>
+            <h1 className="mt-2 max-w-xl font-serif text-3xl font-normal tracking-tight text-slate-50 sm:text-4xl">
+              Modern plantation cottage in Hanalei Bay.
+            </h1>
+            <p className="mt-3 max-w-xl text-xs leading-relaxed text-slate-100/85 sm:text-sm">
+              A reimagined plantation home on a quiet cul‑de‑sac, a short walk
+              from town and the sand—thoughtfully designed for family, friends,
+              and long stays.
+            </p>
+            <Link
+              href="#gallery"
+              className="mt-5 inline-flex rounded-full bg-white/90 px-7 py-2 text-[11px] font-semibold tracking-[0.22em] text-slate-900 shadow-sm backdrop-blur hover:bg-white"
+            >
+              VIEW GALLERY
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -172,7 +173,7 @@ export default function HanaleiPage() {
         </div>
       </section>
 
-      {/* Gallery grid */}
+      {/* Gallery grid with lightbox */}
       <section id="gallery" className="scroll-mt-24 space-y-6">
         <div className="text-center">
           <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">
@@ -182,22 +183,7 @@ export default function HanaleiPage() {
             Photos of the main house, guest house, and outdoor area.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:gap-3 lg:grid-cols-4">
-          {galleryImages.map((src, index) => (
-            <div
-              key={src}
-              className="relative aspect-square overflow-hidden bg-slate-100"
-            >
-              <Image
-                src={src}
-                alt={`Hanalei ${index + 1}`}
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-              />
-            </div>
-          ))}
-        </div>
+        <GalleryLightbox images={galleryImages} altPrefix="Hanalei" />
       </section>
 
       <section className="space-y-4 rounded-sm border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
