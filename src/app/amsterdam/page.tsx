@@ -1,21 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  BedDouble,
+  Flower2,
+  MapPin,
+  Sparkles,
+  Trees,
+  UtensilsCrossed,
+} from "lucide-react";
 import { GalleryLightbox } from "@/components/gallery-lightbox";
-import { getHeroSrc, getPropertyImages } from "@/lib/gallery";
+import { FeatureBlock } from "@/components/feature-block";
+import { getPropertyImages } from "@/lib/gallery";
 
 const CAL_AMSTERDAM_URL =
   "https://cal.com/YOUR-CAL-USERNAME/amsterdam?embed=inline";
 
+/** Editorial pairings — paths must exist in gallery manifest / public */
+const editorial = {
+  livingTrees: "/images/amsterdam/AMS-Living-Room-2.jpg",
+  diningKitchen: "/images/amsterdam/AMS-Dining-Nook.jpg",
+  attic: "/images/amsterdam/AMS-Attic-2.jpg",
+  rijksView: "/images/amsterdam/AMS-Rijks.jpg",
+  tulips: "/images/amsterdam/flowers.jpg",
+} as const;
+
+const iconClass = "h-5 w-5 sm:h-[22px] sm:w-[22px]";
+
 export default function AmsterdamPage() {
   const galleryImages = getPropertyImages("amsterdam");
-  const heroSrc = getHeroSrc("amsterdam", galleryImages);
-
-  const detailImages = {
-    living: galleryImages[1] ?? heroSrc,
-    kitchen: galleryImages[10] ?? heroSrc,
-    tulips: galleryImages[25] ?? heroSrc,
-    attic: galleryImages[5] ?? heroSrc,
-  };
 
   /** Distinct from home carousel; full-width hero using living room shot */
   const heroImage = "/images/amsterdam/AMS-Living-Room-1.jpg";
@@ -59,125 +71,155 @@ export default function AmsterdamPage() {
       </section>
 
       <div className="mx-auto max-w-6xl space-y-20 pt-10 pb-10 sm:pt-16 sm:pb-16 px-4 sm:px-6 lg:px-8 text-slate-800">
-      {/* Story row 1 */}
-      <section className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-start">
-        <div className="space-y-6">
-          <h2 className="font-serif text-xl font-normal tracking-[0.2em] text-slate-900 sm:text-2xl">
-            WETERINGSCHANS 129-3
-          </h2>
-          <p className="max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
-            The two bedroom one and half bath plus attic, 140 square meter
-            apartment sleeps five comfortably. Each bedroom can be configured as
-            one king bed or two twins, and the attic is a perfect hideaway for
-            kids of all ages. The quiet and private apartment is on the top floor
-            of a canal house built in 1885, with views to the water both in front
-            and back.
-          </p>
-          <article className="space-y-3">
-            <h3 className="text-sm font-semibold text-slate-900">
-              <span className="mr-2 text-slate-400">01</span>
-              A living room in the trees
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-600">
-              Floor‑to‑ceiling windows frame the canopy of the trees outside,
-              filling the living room with soft northern light. Neutral tones,
-              layered textures, and considered furnishings create a calm backdrop
-              for long conversations or quiet reading.
-            </p>
-          </article>
-        </div>
-        <div className="grid gap-4">
-          <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-            <Image
-              src={detailImages.living}
-              alt="Amsterdam living room"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 32vw, 100vw"
-            />
-          </div>
-          <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-            <Image
-              src={detailImages.kitchen}
-              alt="Amsterdam kitchen"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 32vw, 100vw"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Story row 2 */}
-      <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-center">
-        <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
-          <Image
-            src={detailImages.attic}
-            alt="Amsterdam attic bedroom"
-            fill
-            className="object-cover"
-            sizes="(min-width: 1024px) 30vw, 100vw"
-          />
-        </div>
-        <div className="space-y-8">
-          <article className="space-y-3">
-            <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">
-              Located in the center of Amsterdam
+        <section className="space-y-12 lg:space-y-16">
+          <header className="max-w-3xl space-y-4">
+            <h2 className="font-serif text-xl font-normal tracking-[0.2em] text-slate-900 sm:text-2xl">
+              WETERINGSCHANS 129-3
             </h2>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              Step outside and you&apos;re moments from the Museumplein, the
-              canal belt, and the restaurants and bars of De Pijp. Trams and the
-              Metro are within easy reach, but most days you&apos;ll want to walk
-              or cycle—everything feels close from here.
+            <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+              The two bedroom one and half bath plus attic, 140 square meter
+              apartment sleeps five comfortably. Each bedroom can be configured as
+              one king bed or two twins, and the attic is a perfect hideaway for
+              kids of all ages. The quiet and private apartment is on the top floor
+              of a canal house built in 1885, with views to the water both in front
+              and back.
             </p>
-          </article>
-          <article className="space-y-3">
-            <h3 className="text-sm font-semibold text-slate-900">
-              <span className="mr-2 text-slate-400">02</span>
-              Everyday Amsterdam, framed
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-600">
-              From the windows you can watch boats drift by on the canals, see
-              the spires of the Rijksmuseum, and catch the changing light over the
-              rooftops. Inside, art, tulips, and layered materials echo the city
-              beyond the glass.
+            <p className="text-sm text-sky-900/90">
+              Each space below is paired with a photo from the real apartment.
             </p>
-          </article>
-        </div>
-      </section>
+          </header>
 
-      {/* Gallery grid with lightbox */}
-      <section id="gallery" className="scroll-mt-24 space-y-6">
-        <div className="text-center">
-          <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">
-            View Gallery
+          <div className="space-y-16 lg:space-y-24">
+            <FeatureBlock
+              icon={<Trees className={iconClass} strokeWidth={1.5} />}
+              title="A living room in the trees"
+              imageSrc={editorial.livingTrees}
+              imageAlt="Amsterdam living room with trees outside the windows"
+              imageSide="right"
+              imageCaption="Floor‑to‑ceiling light and a calm, layered interior"
+            >
+              <p>
+                Floor‑to‑ceiling windows frame the canopy of the trees outside,
+                filling the living room with soft northern light. Neutral tones,
+                layered textures, and considered furnishings create a calm backdrop
+                for long conversations or quiet reading.
+              </p>
+            </FeatureBlock>
+
+            <FeatureBlock
+              icon={<UtensilsCrossed className={iconClass} strokeWidth={1.5} />}
+              title="Kitchen & dining nook"
+              imageSrc={editorial.diningKitchen}
+              imageAlt="Amsterdam dining nook and kitchen area"
+              imageSide="left"
+              imageCaption="Cook, eat, and gather at the heart of the home"
+            >
+              <p>
+                A compact, modern kitchen flows into a bright dining nook—ideal for
+                slow breakfasts before museum days and dinners after a walk along
+                the canals.
+              </p>
+            </FeatureBlock>
+
+            <FeatureBlock
+              icon={<BedDouble className={iconClass} strokeWidth={1.5} />}
+              title="Attic hideaway"
+              imageSrc={editorial.attic}
+              imageAlt="Amsterdam attic bedroom and play space"
+              imageSide="right"
+              imageCaption="Lofted space for kids—or anyone who wants a quiet nook"
+            >
+              <p>
+                The attic is a favorite hideaway: a playful, flexible space that
+                sleeps extra guests or doubles as a reading room with a view over
+                the rooftops.
+              </p>
+            </FeatureBlock>
+
+            <FeatureBlock
+              icon={<MapPin className={iconClass} strokeWidth={1.5} />}
+              title="Located in the center of Amsterdam"
+              imageSrc={editorial.rijksView}
+              imageAlt="View toward the Rijksmuseum from the apartment"
+              imageSide="left"
+              imageCaption="Museumplein, canals, and De Pijp within easy reach"
+            >
+              <p>
+                Step outside and you&apos;re moments from the Museumplein, the
+                canal belt, and the restaurants and bars of De Pijp. Trams and the
+                Metro are within easy reach, but most days you&apos;ll want to walk
+                or cycle—everything feels close from here.
+              </p>
+            </FeatureBlock>
+
+            <FeatureBlock
+              icon={<Flower2 className={iconClass} strokeWidth={1.5} />}
+              title="Everyday Amsterdam, framed"
+              imageSrc={editorial.tulips}
+              imageAlt="Tulips and flowers in the Amsterdam apartment"
+              imageSide="right"
+              imageCaption="Art, tulips, and northern light echoing the city"
+            >
+              <p>
+                From the windows you can watch boats drift by on the canals, see
+                the spires of the Rijksmuseum, and catch the changing light over the
+                rooftops. Inside, art, tulips, and layered materials echo the city
+                beyond the glass.
+              </p>
+            </FeatureBlock>
+
+            <div className="rounded-2xl border border-sky-200/70 bg-gradient-to-br from-sky-50/90 via-[#f5f1ea] to-slate-100/50 p-6 shadow-sm sm:p-10">
+              <FeatureBlock
+                icon={<Sparkles className={iconClass} strokeWidth={1.5} />}
+                title="Renovated in 2023"
+                imageSrc="/images/amsterdam/kitchen-1.jpg"
+                imageAlt="Renovated Amsterdam kitchen"
+                imageSide="left"
+                imageCaption="Clean lines, modern finishes, and plenty of light"
+              >
+                <p>
+                  Recently renovated in 2023, the apartment is clean, modern, and
+                  light—ready for long stays with family or friends, with
+                  everything you need for a comfortable stay in the heart of the
+                  city.
+                </p>
+              </FeatureBlock>
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery grid with lightbox */}
+        <section id="gallery" className="scroll-mt-24 space-y-6">
+          <div className="text-center">
+            <h2 className="font-serif text-3xl font-normal text-slate-900 sm:text-4xl">
+              View Gallery
+            </h2>
+            <p className="mt-2 text-sm text-slate-600">
+              Recently renovated in 2023, the apartment is clean, modern, and
+              light.
+            </p>
+          </div>
+          <GalleryLightbox images={galleryImages} altPrefix="Amsterdam" />
+        </section>
+
+        <section className="space-y-4 rounded-sm border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
+          <h2 className="font-serif text-xl text-slate-900 sm:text-2xl">
+            Availability &amp; booking
           </h2>
-          <p className="mt-2 text-sm text-slate-600">
-            Recently renovated in 2023, the apartment is clean, modern, and
-            light.
+          <p className="text-sm text-slate-600">
+            Check availability and request a booking via Cal.com (link to be
+            updated).
           </p>
-        </div>
-        <GalleryLightbox images={galleryImages} altPrefix="Amsterdam" />
-      </section>
-
-      <section className="space-y-4 rounded-sm border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
-        <h2 className="font-serif text-xl text-slate-900 sm:text-2xl">
-          Availability &amp; booking
-        </h2>
-        <p className="text-sm text-slate-600">
-          Check availability and request a booking via Cal.com (link to be
-          updated).
-        </p>
-        <div className="overflow-hidden rounded-sm border border-slate-200 bg-white">
-          <iframe
-            src={CAL_AMSTERDAM_URL}
-            title="Amsterdam availability and booking"
-            className="h-[700px] w-full"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
-      </section>
+          <div className="overflow-hidden rounded-sm border border-slate-200 bg-white">
+            <iframe
+              src={CAL_AMSTERDAM_URL}
+              title="Amsterdam availability and booking"
+              className="h-[700px] w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </section>
       </div>
     </>
   );
