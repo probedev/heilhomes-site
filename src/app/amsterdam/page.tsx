@@ -84,9 +84,6 @@ export default function AmsterdamPage() {
               of a canal house built in 1885, with views to the water both in front
               and back.
             </p>
-            <p className="text-sm text-sky-900/90">
-              Each space below is paired with a photo from the real apartment.
-            </p>
           </header>
 
           <div className="space-y-16 lg:space-y-24">
