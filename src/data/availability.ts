@@ -16,7 +16,10 @@ export type BookedRange = {
 
 export const BOOKED_RANGES: Record<PropertySlug, BookedRange[]> = {
   hanalei: [
-    // Example: { start: "2025-07-01", end: "2025-07-14", note: "Family trip" },
+    { start: "2026-03-26", end: "2026-04-15", note: "Booked" },
+    { start: "2026-05-07", end: "2026-05-15", note: "Booked" },
+    { start: "2026-06-01", end: "2026-06-28", note: "Booked" },
+    { start: "2026-07-01", end: "2026-07-21", note: "Booked" },
   ],
   amsterdam: [
     // Example: { start: "2025-12-20", end: "2025-12-28", note: "Holidays" },

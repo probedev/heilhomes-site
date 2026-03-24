@@ -19,13 +19,39 @@ const mainEditorial = {
   livingTech: "/images/hanalei/living-room-2.jpg",
 } as const;
 
-/** Ohana guest house — filenames use “ohana” so they stay visually grouped */
+/** Ohana guest house — editorial picks (see full ohana gallery below) */
 const ohanaEditorial = {
   living: "/images/hanalei/Ohana-living-2.jpg",
-  outside1: "/images/hanalei/ohana-outside.jpeg",
-  kitchenette: "/images/hanalei/ohana-kitchenette.jpg",
-  outdoorShower: "/images/hanalei/outdoor-shower-1.jpg",
+  outside: "/images/hanalei/ohana-outside.jpeg",
 } as const;
+
+const ohanaDetailImages: { src: string; label: string; alt: string }[] = [
+  {
+    src: "/images/hanalei/Ohana-loft-1.jpg",
+    label: "Loft · 1",
+    alt: "Ohana loft bedroom",
+  },
+  {
+    src: "/images/hanalei/Ohana-loft-2.jpg",
+    label: "Loft · 2",
+    alt: "Ohana loft",
+  },
+  {
+    src: "/images/hanalei/ohana-bathroom.jpg",
+    label: "Bath",
+    alt: "Ohana bathroom",
+  },
+  {
+    src: "/images/hanalei/outdoor-shower-2.jpg",
+    label: "Outdoor shower",
+    alt: "Ohana outdoor shower",
+  },
+  {
+    src: "/images/hanalei/Ohana-living-3.jpg",
+    label: "Living",
+    alt: "Ohana living space",
+  },
+];
 
 const propertyEditorial = {
   outdoors: "/images/hanalei/outside-4.jpg",
@@ -39,11 +65,6 @@ export default function HanaleiPage() {
   const galleryImages = getPropertyImages("hanalei");
   const { mainHouse: mainHouseGallery, ohana: ohanaGallery } =
     partitionHanaleiGallery(galleryImages);
-
-  /** Prefer manifest path so new uploads are picked up automatically */
-  const ohanaOutside2FromManifest = galleryImages.find((src) =>
-    /ohana-outside2/i.test(src.split("/").pop() ?? ""),
-  );
 
   const heroImage = "/images/hanalei/IMG_3132.jpg";
 
@@ -102,13 +123,21 @@ export default function HanaleiPage() {
           id="main-house"
           className="scroll-mt-24 space-y-10 rounded-2xl border border-amber-900/15 bg-gradient-to-b from-amber-50/50 to-[#f5f1ea]/80 p-6 shadow-sm sm:space-y-12 sm:p-10"
         >
-          <div className="flex flex-wrap items-baseline gap-3 border-b border-amber-900/10 pb-4">
-            <h2 className="font-serif text-xl font-normal text-slate-900 sm:text-2xl">
-              Main house
-            </h2>
-            <span className="rounded-full bg-amber-100/90 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-950/90">
-              Two bedrooms
-            </span>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-amber-900/10 pb-4">
+            <div className="flex flex-wrap items-baseline gap-3">
+              <h2 className="font-serif text-xl font-normal text-slate-900 sm:text-2xl">
+                Main house
+              </h2>
+              <span className="rounded-full bg-amber-100/90 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-950/90">
+                Two bedrooms
+              </span>
+            </div>
+            <Link
+              href="#gallery-main-house"
+              className="text-[11px] font-semibold tracking-[0.22em] text-amber-900/90 underline-offset-4 transition hover:text-amber-950 hover:underline"
+            >
+              VIEW MAIN HOUSE GALLERY
+            </Link>
           </div>
 
           <div className="space-y-14 lg:space-y-20">
@@ -151,13 +180,21 @@ export default function HanaleiPage() {
           id="ohana-guest-house"
           className="scroll-mt-24 space-y-10 rounded-2xl border border-teal-900/15 bg-gradient-to-b from-teal-50/40 to-[#f5f1ea]/90 p-6 shadow-sm sm:space-y-12 sm:p-10"
         >
-          <div className="flex flex-wrap items-baseline gap-3 border-b border-teal-900/10 pb-4">
-            <h2 className="font-serif text-xl font-normal text-slate-900 sm:text-2xl">
-              Ohana guest house
-            </h2>
-            <span className="rounded-full bg-teal-100/90 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-950/90">
-              One bedroom · may rent separately
-            </span>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-teal-900/10 pb-4">
+            <div className="flex flex-wrap items-baseline gap-3">
+              <h2 className="font-serif text-xl font-normal text-slate-900 sm:text-2xl">
+                Ohana guest house
+              </h2>
+              <span className="rounded-full bg-teal-100/90 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-950/90">
+                One bedroom · may rent separately
+              </span>
+            </div>
+            <Link
+              href="#gallery-ohana"
+              className="text-[11px] font-semibold tracking-[0.22em] text-teal-900/90 underline-offset-4 transition hover:text-teal-950 hover:underline"
+            >
+              VIEW OHANA GALLERY
+            </Link>
           </div>
           <p className="max-w-3xl text-sm leading-relaxed text-slate-600">
             The detached ohana is its own small home: private entrance, kitchenette,
@@ -184,79 +221,59 @@ export default function HanaleiPage() {
               </p>
             </FeatureBlock>
 
-            {/* Ohana-only photos: exteriors + key details */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-900/80">
-                Ohana — exteriors & details
-              </h3>
-              <p className="max-w-2xl text-sm text-slate-600">
-                These shots are all labeled in filenames with{" "}
-                <span className="font-medium text-slate-800">ohana</span> so they
-                stay grouped with the guest house.
-              </p>
+            {/* Ohana: one exterior + gallery highlights */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-900/80">
+                  Ohana — exterior & details
+                </h3>
+                <p className="mt-2 max-w-2xl text-sm text-slate-600">
+                  One exterior shot, then loft, bath, outdoor shower, and living—
+                  the same set appears in the{" "}
+                  <Link
+                    href="#gallery-ohana"
+                    className="font-medium text-teal-800 underline-offset-2 hover:underline"
+                  >
+                    ohana gallery
+                  </Link>{" "}
+                  below with the full collection.
+                </p>
+              </div>
+
+              <figure className="space-y-2">
+                <div className="relative aspect-[16/9] max-h-[320px] overflow-hidden rounded-sm bg-slate-100 ring-1 ring-teal-900/10 sm:max-h-[380px] lg:aspect-[21/9]">
+                  <Image
+                    src={ohanaEditorial.outside}
+                    alt="Ohana guest house exterior"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 72vw, 100vw"
+                  />
+                </div>
+                <figcaption className="text-center text-[11px] text-slate-600">
+                  <span className="font-medium text-teal-900/90">Ohana</span> —
+                  exterior
+                </figcaption>
+              </figure>
+
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <figure className="space-y-2">
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-slate-100 ring-1 ring-teal-900/10">
-                    <Image
-                      src={ohanaEditorial.outside1}
-                      alt="Ohana guest house exterior"
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 28vw, 50vw"
-                    />
-                  </div>
-                  <figcaption className="text-center text-[11px] text-slate-600">
-                    <span className="font-medium text-teal-900/90">Ohana</span> —
-                    exterior (ohana-outside)
-                  </figcaption>
-                </figure>
-                {ohanaOutside2FromManifest ? (
-                  <figure className="space-y-2">
+                {ohanaDetailImages.map((item) => (
+                  <figure key={item.src} className="space-y-2">
                     <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-slate-100 ring-1 ring-teal-900/10">
                       <Image
-                        src={ohanaOutside2FromManifest}
-                        alt="Ohana guest house exterior second view"
+                        src={item.src}
+                        alt={item.alt}
                         fill
                         className="object-cover"
                         sizes="(min-width: 1024px) 28vw, 50vw"
                       />
                     </div>
                     <figcaption className="text-center text-[11px] text-slate-600">
-                      <span className="font-medium text-teal-900/90">Ohana</span> —
-                      exterior (ohana-outside2)
+                      <span className="font-medium text-teal-900/90">Ohana</span> —{" "}
+                      {item.label}
                     </figcaption>
                   </figure>
-                ) : null}
-                <figure className="space-y-2 sm:col-span-2 lg:col-span-1">
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-slate-100 ring-1 ring-teal-900/10">
-                    <Image
-                      src={ohanaEditorial.kitchenette}
-                      alt="Ohana kitchenette"
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 28vw, 50vw"
-                    />
-                  </div>
-                  <figcaption className="text-center text-[11px] text-slate-600">
-                    <span className="font-medium text-teal-900/90">Ohana</span> —
-                    kitchenette
-                  </figcaption>
-                </figure>
-                <figure className="space-y-2 sm:col-span-2 lg:col-span-2">
-                  <div className="relative aspect-[4/3] max-h-[280px] overflow-hidden rounded-sm bg-slate-100 ring-1 ring-teal-900/10 sm:max-h-none lg:aspect-[21/9]">
-                    <Image
-                      src={ohanaEditorial.outdoorShower}
-                      alt="Ohana outdoor shower"
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 60vw, 100vw"
-                    />
-                  </div>
-                  <figcaption className="text-center text-[11px] text-slate-600">
-                    <span className="font-medium text-teal-900/90">Ohana</span> —
-                    outdoor shower
-                  </figcaption>
-                </figure>
+                ))}
               </div>
             </div>
           </div>
@@ -345,7 +362,7 @@ export default function HanaleiPage() {
           </div>
 
           <div className="space-y-8">
-            <div className="space-y-3">
+            <div id="gallery-main-house" className="scroll-mt-24 space-y-3">
               <h3 className="text-center font-serif text-lg text-slate-900 sm:text-xl">
                 Main house &amp; property
               </h3>
@@ -355,7 +372,7 @@ export default function HanaleiPage() {
               />
             </div>
 
-            <div className="space-y-3">
+            <div id="gallery-ohana" className="scroll-mt-24 space-y-3">
               <h3 className="text-center font-serif text-lg text-slate-900 sm:text-xl">
                 Ohana guest house
               </h3>
