@@ -128,8 +128,8 @@ export default function HanaleiPage() {
               <h2 className="font-serif text-xl font-normal text-slate-900 sm:text-2xl">
                 Main house
               </h2>
-              <span className="rounded-full bg-amber-100/90 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-950/90">
-                Two bedrooms
+              <span className="rounded-full bg-amber-100/90 px-3 py-0.5 text-[10px] font-semibold tracking-wide text-amber-950/90">
+                Two Bedrooms 1 Bath
               </span>
             </div>
             <Link
@@ -185,8 +185,9 @@ export default function HanaleiPage() {
               <h2 className="font-serif text-xl font-normal text-slate-900 sm:text-2xl">
                 Ohana guest house
               </h2>
-              <span className="rounded-full bg-teal-100/90 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-950/90">
-                One bedroom · may rent separately
+              <span className="max-w-full rounded-lg bg-teal-100/90 px-3 py-2 text-[10px] font-medium leading-snug tracking-wide text-teal-950/90 sm:max-w-lg sm:text-[11px]">
+                One Loft Bedroom + Queen Pull Out Couch and 1/2 Bath/Outdoor
+                Shower
               </span>
             </div>
             <Link
@@ -376,10 +377,6 @@ export default function HanaleiPage() {
               <h3 className="text-center font-serif text-lg text-slate-900 sm:text-xl">
                 Ohana guest house
               </h3>
-              <p className="text-center text-xs text-slate-500">
-                Every image in this grid has{" "}
-                <span className="font-medium">ohana</span> in the filename.
-              </p>
               <GalleryLightbox
                 images={ohanaGallery}
                 altPrefix="Hanalei · ohana"
