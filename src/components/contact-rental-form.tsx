@@ -14,6 +14,20 @@ type ContactRentalFormProps = {
   className?: string;
 };
 
+/** Build-time public key, or runtime key from /api/contact/web3-key (server WEB3FORMS_ACCESS_KEY). */
+async function resolveWeb3Key(): Promise<string | null> {
+  const env = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
+  if (env) return env;
+  try {
+    const r = await fetch("/api/contact/web3-key");
+    if (!r.ok) return null;
+    const j = (await r.json()) as { key?: string | null };
+    return j.key?.trim() ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export function ContactRentalForm({
   propertySlug,
   className,
@@ -49,8 +63,7 @@ export function ContactRentalForm({
       .join("\n");
 
     try {
-      /** Web3Forms often blocks server-side requests on free tier; browser submit works. */
-      const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+      const web3Key = await resolveWeb3Key();
 
       let res: Response;
       if (web3Key) {

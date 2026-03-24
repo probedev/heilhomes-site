@@ -21,7 +21,7 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 ## Availability & rental inquiries
 
 - **Booked dates** are edited in [`src/data/availability.ts`](src/data/availability.ts) (`BOOKED_RANGES` per property). Deploy after changes.
-- **Contact form**: set **`NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`** in Vercel to your Web3Forms access key (browser submits directly to Web3Forms; the server-only key often fails on free tier). Notification email is set in the [Web3Forms](https://web3forms.com) dashboard. Optional: **Resend** via `/api/contact` — see [`.env.example`](.env.example). If neither Web3Forms nor Resend is set, submit uses mailto (`NEXT_PUBLIC_CONTACT_EMAIL`).
+- **Contact form**: set **`WEB3FORMS_ACCESS_KEY`** (or **`NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`**) in Vercel to your Web3Forms access key; the browser submits directly to Web3Forms (server key is exposed at runtime via `GET /api/contact/web3-key`—same as a public form field). Notification email is set in the [Web3Forms](https://web3forms.com) dashboard. Optional: **Resend** via `/api/contact` — see [`.env.example`](.env.example). If no key and no Resend, submit uses mailto (`NEXT_PUBLIC_CONTACT_EMAIL`).
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
