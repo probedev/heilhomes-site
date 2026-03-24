@@ -8,12 +8,10 @@ import {
   Sparkles,
   Wifi,
 } from "lucide-react";
+import { AvailabilityBookingSection } from "@/components/availability-booking-section";
 import { GalleryLightbox } from "@/components/gallery-lightbox";
 import { FeatureBlock } from "@/components/feature-block";
 import { getPropertyImages, partitionHanaleiGallery } from "@/lib/gallery";
-
-const CAL_HANALEI_URL =
-  "https://cal.com/YOUR-CAL-USERNAME/hanalei?embed=inline";
 
 /** Main house — paths must exist in public / manifest */
 const mainEditorial = {
@@ -23,7 +21,7 @@ const mainEditorial = {
 
 /** Ohana guest house — filenames use “ohana” so they stay visually grouped */
 const ohanaEditorial = {
-  living: "/images/hanalei/Ohana-living-1.jpg",
+  living: "/images/hanalei/Ohana-living-2.jpg",
   outside1: "/images/hanalei/ohana-outside.jpeg",
   kitchenette: "/images/hanalei/ohana-kitchenette.jpg",
   outdoorShower: "/images/hanalei/outdoor-shower-1.jpg",
@@ -373,24 +371,7 @@ export default function HanaleiPage() {
           </div>
         </section>
 
-        <section className="space-y-4 rounded-sm border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
-          <h2 className="font-serif text-xl text-slate-900 sm:text-2xl">
-            Availability &amp; booking
-          </h2>
-          <p className="text-sm text-slate-600">
-            Check availability and request a booking via Cal.com (link to be
-            updated).
-          </p>
-          <div className="overflow-hidden rounded-sm border border-slate-200 bg-white">
-            <iframe
-              src={CAL_HANALEI_URL}
-              title="Hanalei availability and booking"
-              className="h-[700px] w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </section>
+        <AvailabilityBookingSection propertySlug="hanalei" />
       </div>
     </>
   );

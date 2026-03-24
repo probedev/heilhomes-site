@@ -8,12 +8,10 @@ import {
   Trees,
   UtensilsCrossed,
 } from "lucide-react";
+import { AvailabilityBookingSection } from "@/components/availability-booking-section";
 import { GalleryLightbox } from "@/components/gallery-lightbox";
 import { FeatureBlock } from "@/components/feature-block";
 import { getPropertyImages } from "@/lib/gallery";
-
-const CAL_AMSTERDAM_URL =
-  "https://cal.com/YOUR-CAL-USERNAME/amsterdam?embed=inline";
 
 /** Editorial pairings — paths must exist in gallery manifest / public */
 const editorial = {
@@ -199,24 +197,7 @@ export default function AmsterdamPage() {
           <GalleryLightbox images={galleryImages} altPrefix="Amsterdam" />
         </section>
 
-        <section className="space-y-4 rounded-sm border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
-          <h2 className="font-serif text-xl text-slate-900 sm:text-2xl">
-            Availability &amp; booking
-          </h2>
-          <p className="text-sm text-slate-600">
-            Check availability and request a booking via Cal.com (link to be
-            updated).
-          </p>
-          <div className="overflow-hidden rounded-sm border border-slate-200 bg-white">
-            <iframe
-              src={CAL_AMSTERDAM_URL}
-              title="Amsterdam availability and booking"
-              className="h-[700px] w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </section>
+        <AvailabilityBookingSection propertySlug="amsterdam" />
       </div>
     </>
   );
