@@ -34,25 +34,92 @@ export function ContactRentalForm({
     setStatus("loading");
     setErrorMessage("");
     setSuccessMessage("");
+
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+    const bodyLines = [
+      `Property: ${propertySlug}`,
+      checkIn ? `Preferred check-in: ${checkIn}` : null,
+      checkOut ? `Preferred check-out: ${checkOut}` : null,
+      "",
+      trimmedMessage,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          property: propertySlug,
-          checkIn: checkIn || undefined,
-          checkOut: checkOut || undefined,
-          message: message.trim(),
-        }),
-      });
-      const data = (await res.json()) as {
+      /** Web3Forms often blocks server-side requests on free tier; browser submit works. */
+      const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+      let res: Response;
+      if (web3Key) {
+        res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            access_key: web3Key,
+            subject: `Rental inquiry — ${propertySlug}`,
+            from_name: "Heil Homes",
+            name: trimmedName,
+            email: trimmedEmail,
+            message: bodyLines,
+          }),
+        });
+      } else {
+        res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: trimmedName,
+            email: trimmedEmail,
+            property: propertySlug,
+            checkIn: checkIn || undefined,
+            checkOut: checkOut || undefined,
+            message: trimmedMessage,
+          }),
+        });
+      }
+
+      const raw = await res.text();
+      let data: {
         ok?: boolean;
         error?: string;
         mailto?: string;
         fallback?: boolean;
-      };
+        success?: boolean;
+        message?: string;
+      } = {};
+      try {
+        data = raw ? (JSON.parse(raw) as typeof data) : {};
+      } catch {
+        setStatus("error");
+        setErrorMessage(
+          `Could not read server response (${res.status}). Please email us directly.`,
+        );
+        return;
+      }
+
+      if (web3Key) {
+        if (!res.ok || !data.success) {
+          setStatus("error");
+          setErrorMessage(
+            data.message ?? "Could not send message. Please try again.",
+          );
+          return;
+        }
+        setName("");
+        setEmail("");
+        setCheckIn("");
+        setCheckOut("");
+        setMessage("");
+        setStatus("success");
+        setSuccessMessage(
+          "Thanks — your message was sent. We'll reply by email soon.",
+        );
+        return;
+      }
+
       if (!res.ok || !data.ok) {
         setStatus("error");
         setErrorMessage(data.error ?? "Something went wrong.");
@@ -74,9 +141,11 @@ export function ContactRentalForm({
           "Thanks — your message was sent. We'll reply by email soon.",
         );
       }
-    } catch {
+    } catch (err) {
       setStatus("error");
-      setErrorMessage("Network error. Please try again.");
+      const msg =
+        err instanceof Error ? err.message : "Network error. Please try again.";
+      setErrorMessage(msg);
     }
   }
 

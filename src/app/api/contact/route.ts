@@ -51,48 +51,11 @@ export async function POST(request: Request) {
     );
   }
 
-  const web3Key = process.env.WEB3FORMS_ACCESS_KEY;
-  if (web3Key) {
-    /** Primary inbox is set in Web3Forms dashboard; optional CC (PRO) for a second inbox */
-    const ccEmail = process.env.WEB3FORMS_CC_EMAIL?.trim();
-
-    const payload: Record<string, string | boolean> = {
-      access_key: web3Key,
-      subject: `Rental inquiry — ${property}`,
-      from_name: "Heil Homes",
-      name,
-      email,
-      message: [
-        `Property: ${property}`,
-        checkIn ? `Preferred check-in: ${checkIn}` : null,
-        checkOut ? `Preferred check-out: ${checkOut}` : null,
-        "",
-        message,
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    };
-    if (ccEmail) {
-      payload.ccemail = ccEmail;
-    }
-
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const data = (await res.json()) as { success?: boolean; message?: string };
-    if (!res.ok || !data.success) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: data.message ?? "Could not send message. Try again later.",
-        },
-        { status: 502 },
-      );
-    }
-    return NextResponse.json({ ok: true });
-  }
+  /**
+   * Web3Forms is submitted from the browser (see ContactRentalForm +
+   * NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY). Server-side calls are often blocked on
+   * the free tier; do not re-add without paid IP allowlisting.
+   */
 
   const resendKey = process.env.RESEND_API_KEY;
   const toRaw = process.env.CONTACT_TO_EMAIL;
