@@ -56,15 +56,18 @@ const ohanaDetailImages: { src: string; label: string; alt: string }[] = [
 const propertyEditorial = {
   outdoors: "/images/hanalei/outside-4.jpg",
   townAndBay: "/images/hanalei/DJI_0051.jpg",
-  coffeeAndMore: "/images/hanalei/coffee-maker.jpg",
+  coffeeAndMore: "/images/hanalei/IMG_2243.png",
 } as const;
 
 const iconClass = "h-5 w-5 sm:h-[22px] sm:w-[22px]";
 
 export default function HanaleiPage() {
   const galleryImages = getPropertyImages("hanalei");
-  const { mainHouse: mainHouseGallery, ohana: ohanaGallery } =
-    partitionHanaleiGallery(galleryImages);
+  const {
+    mainHouse: mainHouseGallery,
+    bayBeach: bayBeachGallery,
+    ohana: ohanaGallery,
+  } = partitionHanaleiGallery(galleryImages);
 
   const heroImage = "/images/hanalei/IMG_3132.jpg";
 
@@ -335,15 +338,15 @@ export default function HanaleiPage() {
                 icon={<Sparkles className={iconClass} strokeWidth={1.5} />}
                 title="And more…"
                 imageSrc={propertyEditorial.coffeeAndMore}
-                imageAlt="Breville espresso machine and kitchen amenities"
+                imageAlt="Beach cruisers with surf racks beside boards and tropical landscaping"
                 imageSide="right"
-                imageCaption="Espresso, grill, boards & beach gear"
+                imageCaption="Bikes with surf racks, espresso, grill & beach gear"
               >
                 <p>
                   New split AC units and Big Ass Fans in every room, Breville
                   automatic espresso machine, Weber gas grill, outdoor sand foot
-                  washer, laundry, and stand up paddle boards and soft top surfboards
-                  to use during your visit.
+                  washer, laundry, beach cruisers with surf racks, and stand up paddle
+                  boards and soft top surfboards to use during your visit.
                 </p>
               </FeatureBlock>
             </div>
@@ -357,8 +360,9 @@ export default function HanaleiPage() {
               View Gallery
             </h2>
             <p className="mt-2 text-sm text-slate-600">
-              Photos are grouped: main house vs. files named with{" "}
-              <span className="font-medium text-slate-800">ohana</span>.
+              House and grounds first, then bay and beach, then the{" "}
+              <span className="font-medium text-slate-800">ohana</span> guest
+              house (files with that in the name).
             </p>
           </div>
 
@@ -372,6 +376,22 @@ export default function HanaleiPage() {
                 altPrefix="Hanalei · main house"
               />
             </div>
+
+            {bayBeachGallery.length > 0 ? (
+              <div id="gallery-bay-beach" className="scroll-mt-24 space-y-3">
+                <h3 className="text-center font-serif text-lg text-slate-900 sm:text-xl">
+                  Hanalei Bay, beach &amp; aerials
+                </h3>
+                <p className="mx-auto max-w-xl text-center text-xs text-slate-500">
+                  Views of the water and shoreline—separate from interior and
+                  grounds photos above.
+                </p>
+                <GalleryLightbox
+                  images={bayBeachGallery}
+                  altPrefix="Hanalei · bay & beach"
+                />
+              </div>
+            ) : null}
 
             <div id="gallery-ohana" className="scroll-mt-24 space-y-3">
               <h3 className="text-center font-serif text-lg text-slate-900 sm:text-xl">

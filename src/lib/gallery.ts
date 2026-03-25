@@ -23,16 +23,31 @@ export function isHanaleiOhanaImage(src: string): boolean {
   return /ohana/i.test(file);
 }
 
-/** Split Hanalei gallery paths for labeled lightboxes (ohana key in filenames). */
+/**
+ * Bay / beach / aerial shots that read as “location” rather than the house itself.
+ * Kept out of the main house grid so interiors and grounds stay grouped together.
+ * Add basenames or patterns here when new scenic assets are added.
+ */
+export function isHanaleiBayBeachScenicImage(src: string): boolean {
+  const file = src.split("/").pop() ?? "";
+  if (/^DJI_/i.test(file)) return true;
+  if (file === "IMG_0575.png") return true;
+  return false;
+}
+
+/** Split Hanalei gallery: main house & grounds, scenic bay/beach, ohana (filename key). */
 export function partitionHanaleiGallery(images: string[]): {
   mainHouse: string[];
+  bayBeach: string[];
   ohana: string[];
 } {
   const mainHouse: string[] = [];
+  const bayBeach: string[] = [];
   const ohana: string[] = [];
   for (const src of images) {
     if (isHanaleiOhanaImage(src)) ohana.push(src);
+    else if (isHanaleiBayBeachScenicImage(src)) bayBeach.push(src);
     else mainHouse.push(src);
   }
-  return { mainHouse, ohana };
+  return { mainHouse, bayBeach, ohana };
 }
