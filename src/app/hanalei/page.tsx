@@ -69,8 +69,8 @@ export default function HanaleiGuestGuidePage() {
     <>
       <section className="relative -mx-4 mb-10 h-[40vh] min-h-[240px] overflow-hidden bg-slate-100 sm:-mx-6 lg:-mx-8 sm:mb-12">
         <Image
-          src="/images/hanalei/IMG_3132.jpg"
-          alt="Hanalei home"
+          src="/images/hanalei/IMG_0575.png"
+          alt="Turquoise wave breaking on Hanalei Bay with a leaning palm tree and rocky shore under a clear blue sky"
           fill
           className="object-cover"
           sizes="100vw"
