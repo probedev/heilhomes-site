@@ -72,7 +72,7 @@ export default function HanaleiGuestGuidePage() {
           src="/images/hanalei/IMG_0575.png"
           alt="Turquoise wave breaking on Hanalei Bay with a leaning palm tree and rocky shore under a clear blue sky"
           fill
-          className="object-cover"
+          className="object-cover object-bottom"
           sizes="100vw"
           priority
         />
