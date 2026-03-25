@@ -9,14 +9,22 @@ import {
   Wifi,
 } from "lucide-react";
 import { AvailabilityBookingSection } from "@/components/availability-booking-section";
+import {
+  CheckAvailabilityHeroGroup,
+  CheckAvailabilityInlineLink,
+  CheckAvailabilityMidBanner,
+} from "@/components/check-availability-cta";
 import { GalleryLightbox } from "@/components/gallery-lightbox";
-import { FeatureBlock } from "@/components/feature-block";
+import {
+  FeatureBlock,
+  type FeatureBlockImage,
+} from "@/components/feature-block";
 import { getPropertyImages, partitionHanaleiGallery } from "@/lib/gallery";
 
 /** Main house — paths must exist in public / manifest */
 const mainEditorial = {
   kitchen: "/images/hanalei/HAN-kitchen-1.jpg",
-  livingTech: "/images/hanalei/living-room-2.jpg",
+  modernComforts: "/images/hanalei/MAster-bed-7.jpg",
 } as const;
 
 /** Ohana guest house — editorial picks (see full ohana gallery below) */
@@ -59,6 +67,54 @@ const propertyEditorial = {
   coffeeAndMore: "/images/hanalei/IMG_2243.png",
 } as const;
 
+/** Extra photos in the “And more…” block (also appear in the gallery below). */
+const hanaleiAndMorePhotos: FeatureBlockImage[] = [
+  {
+    src: "/images/hanalei/IMG_3829.png",
+    alt: "Golden-hour light on Hanalei Bay with a fisherman in the water",
+  },
+  {
+    src: "/images/hanalei/IMG_1366.png",
+    alt: "The home at dusk with warm interior light and mountain silhouettes",
+  },
+  {
+    src: "/images/hanalei/IMG_3078.png",
+    alt: "Surfers and a turquoise wave breaking near the sandy shore",
+  },
+  {
+    src: "/images/hanalei/IMG_3363.png",
+    alt: "Covered lanai with daybed looking out over the lawn and palms",
+  },
+  {
+    src: "/images/hanalei/IMG_0063.png",
+    alt: "Sandy path through tropical plants leading to the beach at sunset",
+  },
+  {
+    src: "/images/hanalei/IMG_2706.png",
+    alt: "Lawn and palm trees at sunset with bay and mountains beyond",
+  },
+  {
+    src: "/images/hanalei/IMG_0255.png",
+    alt: "Palms and rooftops below misty green peaks",
+  },
+  {
+    src: "/images/hanalei/IMG_0590.png",
+    alt: "Purple and white water lilies floating on a garden pond",
+  },
+  {
+    src: "/images/hanalei/IMG_2943.png",
+    alt: "Lush mountain ridges with thin waterfalls under soft clouds",
+  },
+  {
+    src: "/images/hanalei/IMG_3502.png",
+    alt: "Bright green day gecko on large tropical leaves",
+  },
+  {
+    src: "/images/hanalei/IMG_2141.png",
+    alt: "Colorful rooster in a sandy yard with tropical greenery",
+  },
+];
+
 const iconClass = "h-5 w-5 sm:h-[22px] sm:w-[22px]";
 
 export default function HanaleiPage() {
@@ -98,12 +154,7 @@ export default function HanaleiPage() {
                 from town and the sand—thoughtfully designed for family, friends,
                 and long stays.
               </p>
-              <Link
-                href="#gallery"
-                className="mt-5 inline-flex rounded-full bg-white/90 px-7 py-2 text-[11px] font-semibold tracking-[0.22em] text-slate-900 shadow-sm backdrop-blur hover:bg-white"
-              >
-                VIEW GALLERY
-              </Link>
+              <CheckAvailabilityHeroGroup galleryHref="#gallery" />
             </div>
           </div>
         </div>
@@ -117,7 +168,11 @@ export default function HanaleiPage() {
             The property has a <strong className="font-medium">main house</strong>{" "}
             and a detached <strong className="font-medium">ohana</strong> guest
             house—photos below are labeled so you can see which spaces belong to
-            each. Some guests rent the ohana on its own; ask when you book.
+            each. Some guests rent the ohana on its own; ask when you book.{" "}
+            <CheckAvailabilityInlineLink className="text-teal-900 decoration-teal-900/40">
+              Check availability
+            </CheckAvailabilityInlineLink>{" "}
+            for your dates—we reply by email.
           </p>
         </header>
 
@@ -162,11 +217,11 @@ export default function HanaleiPage() {
 
             <FeatureBlock
               icon={<Wifi className={iconClass} strokeWidth={1.5} />}
-              title="Modern comforts (main house)"
-              imageSrc={mainEditorial.livingTech}
-              imageAlt="Hanalei main house living room with entertainment"
+              title="Modern comforts"
+              imageSrc={mainEditorial.modernComforts}
+              imageAlt="Hanalei main house master bedroom"
               imageSide="left"
-              imageCaption="Main house — living spaces wired for work and downtime"
+              imageCaption="Main house — rest easy with fiber Wi‑Fi, streaming, and Sonos"
             >
               <p>
                 Gigabit fiber internet, Wi‑Fi 7 mesh routers, smart locks and
@@ -340,7 +395,8 @@ export default function HanaleiPage() {
                 imageSrc={propertyEditorial.coffeeAndMore}
                 imageAlt="Beach cruisers with surf racks beside boards and tropical landscaping"
                 imageSide="right"
-                imageCaption="Bikes with surf racks, espresso, grill & beach gear"
+                imageCaption="Bikes with surf racks, espresso, grill & beach gear—plus a few favorite Hanalei moments"
+                moreImages={hanaleiAndMorePhotos}
               >
                 <p>
                   New split AC units and Big Ass Fans in every room, Breville
@@ -353,6 +409,11 @@ export default function HanaleiPage() {
           </div>
         </section>
 
+        <CheckAvailabilityMidBanner
+          tone="hanalei"
+          headline="Like what you see? See if your week is still open, then send us a note—we&apos;ll reply by email."
+        />
+
         {/* Gallery — split by filename key */}
         <section id="gallery" className="scroll-mt-24 space-y-10">
           <div className="text-center">
@@ -360,9 +421,10 @@ export default function HanaleiPage() {
               View Gallery
             </h2>
             <p className="mt-2 text-sm text-slate-600">
-              House and grounds first, then bay and beach, then the{" "}
+              Main house and grounds first, then the{" "}
               <span className="font-medium text-slate-800">ohana</span> guest
-              house (files with that in the name).
+              house (files with that in the name), then bay, beach, and aerial
+              views.
             </p>
           </div>
 
@@ -377,22 +439,6 @@ export default function HanaleiPage() {
               />
             </div>
 
-            {bayBeachGallery.length > 0 ? (
-              <div id="gallery-bay-beach" className="scroll-mt-24 space-y-3">
-                <h3 className="text-center font-serif text-lg text-slate-900 sm:text-xl">
-                  Hanalei Bay, beach &amp; aerials
-                </h3>
-                <p className="mx-auto max-w-xl text-center text-xs text-slate-500">
-                  Views of the water and shoreline—separate from interior and
-                  grounds photos above.
-                </p>
-                <GalleryLightbox
-                  images={bayBeachGallery}
-                  altPrefix="Hanalei · bay & beach"
-                />
-              </div>
-            ) : null}
-
             <div id="gallery-ohana" className="scroll-mt-24 space-y-3">
               <h3 className="text-center font-serif text-lg text-slate-900 sm:text-xl">
                 Ohana guest house
@@ -402,6 +448,21 @@ export default function HanaleiPage() {
                 altPrefix="Hanalei · ohana"
               />
             </div>
+
+            {bayBeachGallery.length > 0 ? (
+              <div id="gallery-bay-beach" className="scroll-mt-24 space-y-3">
+                <h3 className="text-center font-serif text-lg text-slate-900 sm:text-xl">
+                  Hanalei Bay, beach &amp; aerials
+                </h3>
+                <p className="mx-auto max-w-xl text-center text-xs text-slate-500">
+                  Water, shoreline, and drone views—after the house tours above.
+                </p>
+                <GalleryLightbox
+                  images={bayBeachGallery}
+                  altPrefix="Hanalei · bay & beach"
+                />
+              </div>
+            ) : null}
           </div>
         </section>
 

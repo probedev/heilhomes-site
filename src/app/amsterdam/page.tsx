@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   BedDouble,
   Flower2,
@@ -9,6 +8,11 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 import { AvailabilityBookingSection } from "@/components/availability-booking-section";
+import {
+  CheckAvailabilityHeroGroup,
+  CheckAvailabilityInlineLink,
+  CheckAvailabilityMidBanner,
+} from "@/components/check-availability-cta";
 import { GalleryLightbox } from "@/components/gallery-lightbox";
 import { FeatureBlock } from "@/components/feature-block";
 import { getPropertyImages } from "@/lib/gallery";
@@ -57,12 +61,7 @@ export default function AmsterdamPage() {
                 surrounding canals—clean, quiet, and filled with soft northern
                 light.
               </p>
-              <Link
-                href="#gallery"
-                className="mt-5 inline-flex rounded-full bg-white/90 px-7 py-2 text-[11px] font-semibold tracking-[0.22em] text-slate-900 shadow-sm backdrop-blur hover:bg-white"
-              >
-                VIEW GALLERY
-              </Link>
+              <CheckAvailabilityHeroGroup galleryHref="#gallery" />
             </div>
           </div>
         </div>
@@ -80,7 +79,11 @@ export default function AmsterdamPage() {
               one king bed or two twins, and the attic is a perfect hideaway for
               kids of all ages. The quiet and private apartment is on the top floor
               of a canal house built in 1885, with views to the water both in front
-              and back.
+              and back.{" "}
+              <CheckAvailabilityInlineLink className="text-sky-900 decoration-sky-900/40">
+                Check availability
+              </CheckAvailabilityInlineLink>{" "}
+              for your stay—we reply by email.
             </p>
           </header>
 
@@ -182,6 +185,11 @@ export default function AmsterdamPage() {
             </div>
           </div>
         </section>
+
+        <CheckAvailabilityMidBanner
+          tone="amsterdam"
+          headline="Curious about specific dates? Peek at the calendar and drop us a line—we&apos;ll get back to you by email."
+        />
 
         {/* Gallery grid with lightbox */}
         <section id="gallery" className="scroll-mt-24 space-y-6">

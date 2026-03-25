@@ -28,10 +28,19 @@ export function isHanaleiOhanaImage(src: string): boolean {
  * Kept out of the main house grid so interiors and grounds stay grouped together.
  * Add basenames or patterns here when new scenic assets are added.
  */
+const HANALEI_BAY_BEACH_BASENAMES = new Set([
+  "IMG_0575.png",
+  "IMG_0063.png",
+  "IMG_0255.png",
+  "IMG_3078.png",
+  "IMG_3829.png",
+  "IMG_2943.png",
+]);
+
 export function isHanaleiBayBeachScenicImage(src: string): boolean {
   const file = src.split("/").pop() ?? "";
   if (/^DJI_/i.test(file)) return true;
-  if (file === "IMG_0575.png") return true;
+  if (HANALEI_BAY_BEACH_BASENAMES.has(file)) return true;
   return false;
 }
 

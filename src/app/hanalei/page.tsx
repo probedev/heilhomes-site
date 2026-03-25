@@ -88,7 +88,7 @@ export default function HanaleiGuestGuidePage() {
       </section>
 
       <div className="mx-auto max-w-3xl px-4 pb-20 pt-2 sm:px-6 lg:px-8">
-        <p className="mb-8 text-sm leading-relaxed text-slate-600">
+        <p className="mb-4 text-sm leading-relaxed text-slate-600">
           Scan-to-page guide for guests. For photos, availability, and booking,
           visit the{" "}
           <Link href="/hanalei/stay" className={linkClass}>
@@ -96,6 +96,14 @@ export default function HanaleiGuestGuidePage() {
           </Link>
           .
         </p>
+        <div className="mb-8">
+          <Link
+            href="/hanalei/stay#availability"
+            className="inline-flex rounded-full border border-teal-800/30 bg-teal-50/90 px-6 py-2.5 text-[11px] font-semibold tracking-[0.2em] text-teal-900 shadow-sm transition hover:bg-teal-100"
+          >
+            CHECK AVAILABILITY
+          </Link>
+        </div>
 
         {/* Quick reference — above nav for QR guests */}
         <section className="mb-10 scroll-mt-28 rounded-2xl border border-teal-900/10 bg-white p-6 shadow-sm sm:p-8">

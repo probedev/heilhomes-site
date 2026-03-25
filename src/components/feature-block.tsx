@@ -1,6 +1,8 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 
+export type FeatureBlockImage = { src: string; alt: string };
+
 type FeatureBlockProps = {
   icon: ReactNode;
   title: string;
@@ -11,6 +13,8 @@ type FeatureBlockProps = {
   imageSide?: "left" | "right";
   /** Optional caption under the image */
   imageCaption?: string;
+  /** Extra photos in a grid below the main image */
+  moreImages?: FeatureBlockImage[];
 };
 
 export function FeatureBlock({
@@ -21,6 +25,7 @@ export function FeatureBlock({
   imageAlt,
   imageSide = "right",
   imageCaption,
+  moreImages,
 }: FeatureBlockProps) {
   const imageBlock = (
     <figure className="space-y-2">
@@ -37,6 +42,28 @@ export function FeatureBlock({
         <figcaption className="text-center text-[11px] tracking-wide text-slate-500">
           {imageCaption}
         </figcaption>
+      ) : null}
+      {moreImages?.length ? (
+        <div
+          className="grid grid-cols-2 gap-2 pt-1 sm:grid-cols-3"
+          role="group"
+          aria-label="Additional photos"
+        >
+          {moreImages.map((img) => (
+            <div
+              key={img.src}
+              className="relative aspect-square overflow-hidden rounded-sm bg-slate-100 ring-1 ring-slate-200/50"
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 15vw, 33vw"
+              />
+            </div>
+          ))}
+        </div>
       ) : null}
     </figure>
   );
