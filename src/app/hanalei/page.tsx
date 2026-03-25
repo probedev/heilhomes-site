@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Speaker } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -87,7 +88,7 @@ export default function HanaleiGuestGuidePage() {
       </section>
 
       <div className="mx-auto max-w-3xl px-4 pb-20 pt-2 sm:px-6 lg:px-8">
-        <p className="mb-6 text-sm leading-relaxed text-slate-600">
+        <p className="mb-8 text-sm leading-relaxed text-slate-600">
           Scan-to-page guide for guests. For photos, availability, and booking,
           visit the{" "}
           <Link href="/hanalei/stay" className={linkClass}>
@@ -95,6 +96,52 @@ export default function HanaleiGuestGuidePage() {
           </Link>
           .
         </p>
+
+        {/* Quick reference — above nav for QR guests */}
+        <section className="mb-10 scroll-mt-28 rounded-2xl border border-teal-900/10 bg-white p-6 shadow-sm sm:p-8">
+          <SectionTitle id="quick-reference">Quick reference</SectionTitle>
+          <dl className="mt-6 grid gap-4 text-sm sm:grid-cols-2">
+            <div className="rounded-lg bg-[#f5f1ea]/80 px-4 py-3">
+              <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                WiFi
+              </dt>
+              <dd className="mt-1 font-mono text-slate-900">gmoneyhanalei</dd>
+            </div>
+            <div className="rounded-lg bg-[#f5f1ea]/80 px-4 py-3">
+              <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Password
+              </dt>
+              <dd className="mt-1 font-mono text-slate-900">R0berto99</dd>
+            </div>
+            <div className="rounded-lg bg-[#f5f1ea]/80 px-4 py-3">
+              <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Main house key code
+              </dt>
+              <dd className="mt-1 font-mono text-lg text-slate-900">2337</dd>
+            </div>
+            <div className="rounded-lg bg-[#f5f1ea]/80 px-4 py-3">
+              <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Guest house key code
+              </dt>
+              <dd className="mt-1 font-mono text-lg text-slate-900">2338</dd>
+            </div>
+          </dl>
+          <p className="mt-6 text-sm leading-relaxed text-slate-600">
+            Text{" "}
+            <a href="tel:+13038038576" className={linkClass}>
+              Gregg · 303.803.8576
+            </a>{" "}
+            or{" "}
+            <a href="tel:+16165601402" className={linkClass}>
+              Nicole · 616.560.1402
+            </a>{" "}
+            with any questions.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            Physical keys: outdoor closet in the <strong>Mr. Clean box</strong> next
+            to the main house side door (backup if keypads don&apos;t work).
+          </p>
+        </section>
 
         {/* Table of contents */}
         <nav
@@ -191,52 +238,6 @@ export default function HanaleiGuestGuidePage() {
         </nav>
 
         <article className="space-y-12">
-          {/* Quick reference */}
-          <section className="scroll-mt-28 rounded-2xl border border-teal-900/10 bg-white p-6 shadow-sm sm:p-8">
-            <SectionTitle id="quick-reference">Quick reference</SectionTitle>
-            <dl className="mt-6 grid gap-4 text-sm sm:grid-cols-2">
-              <div className="rounded-lg bg-[#f5f1ea]/80 px-4 py-3">
-                <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                  WiFi
-                </dt>
-                <dd className="mt-1 font-mono text-slate-900">gmoneyhanalei</dd>
-              </div>
-              <div className="rounded-lg bg-[#f5f1ea]/80 px-4 py-3">
-                <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                  Password
-                </dt>
-                <dd className="mt-1 font-mono text-slate-900">R0berto99</dd>
-              </div>
-              <div className="rounded-lg bg-[#f5f1ea]/80 px-4 py-3">
-                <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                  Main house key code
-                </dt>
-                <dd className="mt-1 font-mono text-lg text-slate-900">2337</dd>
-              </div>
-              <div className="rounded-lg bg-[#f5f1ea]/80 px-4 py-3">
-                <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                  Guest house key code
-                </dt>
-                <dd className="mt-1 font-mono text-lg text-slate-900">2338</dd>
-              </div>
-            </dl>
-            <p className="mt-6 text-sm leading-relaxed text-slate-600">
-              Text{" "}
-              <a href="tel:+13038038576" className={linkClass}>
-                Gregg · 303.803.8576
-              </a>{" "}
-              or{" "}
-              <a href="tel:+16165601402" className={linkClass}>
-                Nicole · 616.560.1402
-              </a>{" "}
-              with any questions.
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              Physical keys: outdoor closet in the <strong>Mr. Clean box</strong>{" "}
-              next to the main house side door (backup if keypads don&apos;t work).
-            </p>
-          </section>
-
           {/* Main house */}
           <section className="space-y-4">
             <SectionTitle id="main-house">Main house tips</SectionTitle>
@@ -275,8 +276,30 @@ export default function HanaleiGuestGuidePage() {
                 broadcast.
               </li>
               <li>
-                Bluetooth: pair to <strong>MEGABOOM 3</strong> or use{" "}
-                <strong>AirPlay → LIVING ROOM</strong> for Sonos.
+                <span className="inline-flex items-start gap-2">
+                  <Speaker
+                    className="mt-0.5 h-5 w-5 shrink-0 text-teal-700"
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
+                  <span>
+                    <strong>Sonos:</strong> whole-home sound for TV / home theatre,
+                    plus two portable <strong>Sonos Move 2</strong> speakers—one in
+                    the master bedroom and one in the guest (ohana) house. From any
+                    AirPlay-compatible phone, tablet, or laptop, choose the{" "}
+                    <strong>Sonos</strong> output to play music on any or all
+                    speakers at once.{" "}
+                    <a
+                      href="https://support.sonos.com/en-us/article/play-audio-from-your-ios-device-using-airplay-on-sonos"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${linkClass} inline-flex items-center gap-1`}
+                    >
+                      Sonos AirPlay instructions
+                      <span aria-hidden>↗</span>
+                    </a>
+                  </span>
+                </span>
               </li>
               <li>
                 Garbage disposal runs very quietly—remember to turn it off.
