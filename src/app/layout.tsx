@@ -44,7 +44,7 @@ export default function RootLayout({
               </Link>
               <nav className="flex items-center gap-6 text-xs font-medium tracking-[0.25em] text-slate-500">
                 <Link
-                  href="/hanalei"
+                  href="/hanalei/stay"
                   className="transition hover:text-slate-900"
                 >
                   Hanalei

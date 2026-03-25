@@ -8,7 +8,7 @@ const slides = [
   {
     name: "Hanalei",
     subtitle: "North Shore Kauai",
-    href: "/hanalei",
+    href: "/hanalei/stay",
     image: "/images/hanalei/DJI_0051.jpg",
   },
   {
