@@ -15,11 +15,12 @@ import {
   CheckAvailabilityMidBanner,
 } from "@/components/check-availability-cta";
 import { GalleryLightbox } from "@/components/gallery-lightbox";
+import { FeatureBlock } from "@/components/feature-block";
 import {
-  FeatureBlock,
-  type FeatureBlockImage,
-} from "@/components/feature-block";
-import { getPropertyImages, partitionHanaleiGallery } from "@/lib/gallery";
+  getPropertyImages,
+  partitionHanaleiGallery,
+  sortHanaleiBayBeachGallery,
+} from "@/lib/gallery";
 
 /** Main house — paths must exist in public / manifest */
 const mainEditorial = {
@@ -67,63 +68,16 @@ const propertyEditorial = {
   coffeeAndMore: "/images/hanalei/IMG_2243.png",
 } as const;
 
-/** Extra photos in the “And more…” block (also appear in the gallery below). */
-const hanaleiAndMorePhotos: FeatureBlockImage[] = [
-  {
-    src: "/images/hanalei/IMG_3829.png",
-    alt: "Golden-hour light on Hanalei Bay with a fisherman in the water",
-  },
-  {
-    src: "/images/hanalei/IMG_1366.png",
-    alt: "The home at dusk with warm interior light and mountain silhouettes",
-  },
-  {
-    src: "/images/hanalei/IMG_3078.png",
-    alt: "Surfers and a turquoise wave breaking near the sandy shore",
-  },
-  {
-    src: "/images/hanalei/IMG_3363.png",
-    alt: "Covered lanai with daybed looking out over the lawn and palms",
-  },
-  {
-    src: "/images/hanalei/IMG_0063.png",
-    alt: "Sandy path through tropical plants leading to the beach at sunset",
-  },
-  {
-    src: "/images/hanalei/IMG_2706.png",
-    alt: "Lawn and palm trees at sunset with bay and mountains beyond",
-  },
-  {
-    src: "/images/hanalei/IMG_0255.png",
-    alt: "Palms and rooftops below misty green peaks",
-  },
-  {
-    src: "/images/hanalei/IMG_0590.png",
-    alt: "Purple and white water lilies floating on a garden pond",
-  },
-  {
-    src: "/images/hanalei/IMG_2943.png",
-    alt: "Lush mountain ridges with thin waterfalls under soft clouds",
-  },
-  {
-    src: "/images/hanalei/IMG_3502.png",
-    alt: "Bright green day gecko on large tropical leaves",
-  },
-  {
-    src: "/images/hanalei/IMG_2141.png",
-    alt: "Colorful rooster in a sandy yard with tropical greenery",
-  },
-];
-
 const iconClass = "h-5 w-5 sm:h-[22px] sm:w-[22px]";
 
 export default function HanaleiPage() {
   const galleryImages = getPropertyImages("hanalei");
   const {
     mainHouse: mainHouseGallery,
-    bayBeach: bayBeachGallery,
+    bayBeach: bayBeachUnsorted,
     ohana: ohanaGallery,
   } = partitionHanaleiGallery(galleryImages);
+  const bayBeachGallery = sortHanaleiBayBeachGallery(bayBeachUnsorted);
 
   const heroImage = "/images/hanalei/IMG_3132.jpg";
 
@@ -395,8 +349,7 @@ export default function HanaleiPage() {
                 imageSrc={propertyEditorial.coffeeAndMore}
                 imageAlt="Beach cruisers with surf racks beside boards and tropical landscaping"
                 imageSide="right"
-                imageCaption="Bikes with surf racks, espresso, grill & beach gear—plus a few favorite Hanalei moments"
-                moreImages={hanaleiAndMorePhotos}
+                imageCaption="Bikes with surf racks, espresso, grill & beach gear"
               >
                 <p>
                   New split AC units and Big Ass Fans in every room, Breville
@@ -423,8 +376,8 @@ export default function HanaleiPage() {
             <p className="mt-2 text-sm text-slate-600">
               Main house and grounds first, then the{" "}
               <span className="font-medium text-slate-800">ohana</span> guest
-              house (files with that in the name), then bay, beach, and aerial
-              views.
+              house (files with that in the name), then Hanalei Bay—flowers,
+              fauna, beach, and aerials.
             </p>
           </div>
 
@@ -433,6 +386,14 @@ export default function HanaleiPage() {
               <h3 className="text-center font-serif text-lg text-slate-900 sm:text-xl">
                 Main house &amp; property
               </h3>
+              <p className="mx-auto max-w-xl text-center text-xs text-slate-500">
+                Interiors and grounds only. Beach, aerials, flowers, and
+                wildlife shots are grouped in{" "}
+                <span className="font-medium text-slate-600">
+                  Hanalei Bay: flower, fauna, beach &amp; aerials
+                </span>{" "}
+                (last on this page)—not repeated here.
+              </p>
               <GalleryLightbox
                 images={mainHouseGallery}
                 altPrefix="Hanalei · main house"
@@ -452,14 +413,16 @@ export default function HanaleiPage() {
             {bayBeachGallery.length > 0 ? (
               <div id="gallery-bay-beach" className="scroll-mt-24 space-y-3">
                 <h3 className="text-center font-serif text-lg text-slate-900 sm:text-xl">
-                  Hanalei Bay, beach &amp; aerials
+                  Hanalei Bay: flower, fauna, beach &amp; aerials
                 </h3>
                 <p className="mx-auto max-w-xl text-center text-xs text-slate-500">
-                  Water, shoreline, and drone views—after the house tours above.
+                  Garden blooms, local wildlife, surf and sand, golden-hour
+                  light, and drone perspectives. These aren&apos;t duplicated in
+                  Main house &amp; property—each photo lives in one gallery only.
                 </p>
                 <GalleryLightbox
                   images={bayBeachGallery}
-                  altPrefix="Hanalei · bay & beach"
+                  altPrefix="Hanalei · nature & bay"
                 />
               </div>
             ) : null}
