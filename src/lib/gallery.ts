@@ -40,6 +40,7 @@ const HANALEI_BAY_BEACH_BASENAMES = new Set([
   "IMG_0590.png",
   "IMG_3502.png",
   "IMG_2141.png",
+  "IMG_1340.png",
 ]);
 
 const HANALEI_BAY_BEACH_BASENAMES_LOWER = new Set(
@@ -59,6 +60,7 @@ const HANALEI_BAY_BEACH_PATH_ORDER: readonly string[] = [
   "/images/hanalei/IMG_2943.png",
   "/images/hanalei/IMG_3502.png",
   "/images/hanalei/IMG_2141.png",
+  "/images/hanalei/IMG_1340.png",
 ];
 
 export function isHanaleiBayBeachScenicImage(src: string): boolean {
