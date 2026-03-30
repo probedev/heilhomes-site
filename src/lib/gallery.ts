@@ -43,6 +43,7 @@ const HANALEI_BAY_BEACH_BASENAMES = new Set([
   "IMG_1340.png",
   "IMG_9857.png",
   "IMG_0593.png",
+  "outside-4.jpg",
 ]);
 
 const HANALEI_BAY_BEACH_BASENAMES_LOWER = new Set(
@@ -58,6 +59,7 @@ const HANALEI_BAY_BEACH_PATH_ORDER: readonly string[] = [
   "/images/hanalei/IMG_3363.png",
   "/images/hanalei/IMG_0063.png",
   "/images/hanalei/IMG_2706.png",
+  "/images/hanalei/outside-4.jpg",
   "/images/hanalei/IMG_0255.png",
   "/images/hanalei/IMG_0590.png",
   "/images/hanalei/IMG_9857.png",
